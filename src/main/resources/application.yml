@@ -1,0 +1,23 @@
+server:
+  # 端口号
+  port: 8080
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.94.151.23:3306/blog
+    username: root
+    password: yourPassword
+  jpa:
+    hibernate:
+      # 实体类有更新时，数据库表更新
+      ddl-auto: update
+    show-sql: true
+    format_sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  http:
+    # 过滤字符编码
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
