@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-
 @Entity
 @Table(name = "t_user")
 public class UserEntity {
@@ -39,9 +38,9 @@ public class UserEntity {
 
     private Integer status;
 
-    private Date gmtCreateTime;
+    private Long CreateTime;
 
-    private Date gmtUpdateTime;
+    private Long UpdateTime;
 
     public long getId() {
         return id;
@@ -131,19 +130,19 @@ public class UserEntity {
         this.status = status;
     }
 
-    public Date getGmtCreateTime() {
-        return gmtCreateTime;
+    public Long getCreateTime() {
+        return CreateTime;
     }
 
-    public void setGmtCreateTime(Date gmtCreateTime) {
-        this.gmtCreateTime = gmtCreateTime;
+    public void setCreateTime(Long createTime) {
+        CreateTime = createTime;
     }
 
-    public Date getGmtUpdateTime() {
-        return gmtUpdateTime;
+    public Long getUpdateTime() {
+        return UpdateTime;
     }
 
-    public void setGmtUpdateTime(Date gmtUpdateTime) {
-        this.gmtUpdateTime = gmtUpdateTime;
+    public void setUpdateTime(Long updateTime) {
+        UpdateTime = updateTime;
     }
 }
