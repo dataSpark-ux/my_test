@@ -1,8 +1,6 @@
 server:
-  # 端口号
-  port: 8080
+  port: 9090
 spring:
-  # 数据源配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.94.151.23:3306/blog
