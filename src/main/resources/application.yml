@@ -19,3 +19,8 @@ spring:
       charset: UTF-8
       enabled: true
       force: true
+  rabbitmq:
+    host: 47.94.151.23
+    port: 5672
+    username: guest
+    password: guest
