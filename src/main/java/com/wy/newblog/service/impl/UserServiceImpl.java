@@ -28,7 +28,6 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
             user = userRepository.save(userEntity);
         } catch (Exception e) {
             logger.error("新增失败，原因{}", e);
-            e.printStackTrace();
             return new Result(ResultCode.ADD_FAILURE);
         }
         logger.info("新增成功");

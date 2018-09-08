@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @suther: wy
+ * @auther wy
  * @Date: 2018/9/3 23
  * @Description:
  */
