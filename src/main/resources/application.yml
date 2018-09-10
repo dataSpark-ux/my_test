@@ -16,3 +16,41 @@ spring:
       charset: UTF-8
       enabled: true
       force: true
+swagger:
+  enabled: true
+  title: blog
+  description: myBlog
+  version: 1.0.0
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  terms-of-service-url: https://github.com/dyc87112/spring-boot-starter-swagger
+  contact:
+    name: wy
+    url: 837466309@qq.com
+  base-package: com.wy.newblog
+  global-operation-parameters[0]:
+    name: access_token
+    description: user access token
+    modelRef: string
+    parmeterType: modelRef
+    required: true
+  global-operation-parameters[1]:
+    name: timestamp
+    description: access timestamp
+    modelRef: int
+    parmeterType: header
+    required: false
+  apply-default-response-messages: true
+  global-response-message.get[0]:
+    code: 401
+    message: 401get
+  global-response-message.get[1]:
+    code: 500
+    message: 500get
+    modelRef: ERROR
+  ui-config:
+    json-editor: true
+    show-request-headers: true
+    request-timeout: 5000
+    submit-methods: get,delete,post
+
