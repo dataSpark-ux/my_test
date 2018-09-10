@@ -6,6 +6,23 @@ spring:
     url: jdbc:mysql://47.94.151.23:3306/blog
     username: root
     password: yourPassword
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filter:
+        stat:
+          log-slow-sql: true
+      stat-view-servlet:
+       # 默认true 内置监控页面首页/druid/index.html
+        enabled: true
+        url-pattern: /druid/*
+        # 允许清空统计数据
+        reset-enable: true
+        login-username: blog
+        login-password: blog
+        # 白名单，多个使用逗号隔开
+        allow:
+        # 黑名单
+        deny:
   rabbitmq:
     host: 47.94.151.23
     port: 5672
