@@ -1,6 +1,7 @@
 package com.wy.newblog.core;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.wy.newblog.entity.enums.ResultCode;
 
 
 public class Result<T> {

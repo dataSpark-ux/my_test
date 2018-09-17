@@ -1,17 +1,23 @@
 package com.wy.newblog.entity;
 
+import com.wy.newblog.base.BaseEntity;
+import com.wy.newblog.entity.enums.Status;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
+/**
+  * @author WY
+  * @date 2018/9/13
+ */
 @Data
 @Entity
 @Table(name = "t_user")
+@ApiModel("用户基本信息")
 public class UserEntity extends BaseEntity {
-
     @Column(nullable = false)
     @NotNull(message = "用户名不能为空")
     @Size(max = 15, min = 8, message = "用户长度最少大于8且小于15")
@@ -29,10 +35,18 @@ public class UserEntity extends BaseEntity {
     @NotNull(message = "昵称不能为空")
     @ApiModelProperty(value = "昵称")
     private String nickname;
+
     @ApiModelProperty(value = "邮箱")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$")
+    @NotNull
     private String email;
-    @ApiModelProperty(value = "头像")
+
+    @ApiModelProperty(value = "头像地址")
     private String avatar;
+    @ApiModelProperty(value = "年龄")
+    @Max(50)
+    @Min(1)
+    private Integer age;
 
-
+    private Status status;
 }

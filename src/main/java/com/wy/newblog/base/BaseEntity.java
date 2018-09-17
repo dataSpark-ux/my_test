@@ -1,4 +1,4 @@
-package com.wy.newblog.entity;
+package com.wy.newblog.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wy.newblog.common.utils.SnowFlakeUtil;

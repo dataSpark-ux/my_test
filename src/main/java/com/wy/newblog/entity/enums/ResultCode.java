@@ -1,4 +1,4 @@
-package com.wy.newblog.core;
+package com.wy.newblog.entity.enums;
 
 public enum ResultCode {
     // Use standard HTTP status code

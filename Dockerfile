@@ -5,6 +5,6 @@ VOLUME /tmp
 ADD target/newblog-0.0.1-SNAPSHOT.jar blog.jar
 RUN sh -c 'touch /blog.jar'
 ENV JAVA_OPTS=""
-EXPOSE 9091
+EXPOSE 9090
 #指定执行启动spring boot小项目     ENTRYPOINT 为容器启动后执行的命令
 ENTRYPOINT ["java","-jar","/blog.jar"]
