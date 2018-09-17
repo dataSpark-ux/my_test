@@ -1,4 +1,5 @@
 package com.wy.newblog.controller;
+import com.wy.newblog.annotation.Access;
 import com.wy.newblog.core.Result;
 import com.wy.newblog.entity.UserEntity;
 import com.wy.newblog.service.IUserService;
@@ -24,6 +25,7 @@ public class UserController {
     private IUserService userService;
 	@ApiOperation("创建用户")
     @PostMapping("/register")
+    @Access(authorities = {"admin","user"})
     public Result register(@RequestBody @Valid UserEntity userEntity, HttpServletRequest request) {
         String access_token = request.getHeader("access_token");
         System.err.println(access_token);
