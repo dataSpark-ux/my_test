@@ -4,7 +4,6 @@ import com.wy.newblog.base.BaseServiceImpl;
 import com.wy.newblog.core.config.EmailConfig;
 import com.wy.newblog.entity.dto.Pair;
 import com.wy.newblog.service.IEmailService;
-import org.apache.velocity.app.VelocityEngine;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

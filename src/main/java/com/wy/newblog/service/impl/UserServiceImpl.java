@@ -30,6 +30,8 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
     private IEmailService emailService;
     @Resource
     private IMessageServiceImpl messageService;
+
+    private Long nowTime = System.currentTimeMillis();
     @Override
     public Result save(UserEntity userEntity) {
         UserEntity user;
@@ -39,6 +41,7 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                 userEntity.setStatus(Status.INVALID);
                 String encryptPwd = PasswordUtil.encrypt(userEntity.getPassword(), userEntity.getEmail());
                 userEntity.setPassword(encryptPwd);
+                userEntity.setCreateTime(nowTime);
                 user = userRepository.save(userEntity);
                 emailService.sendSimpleMail(userEntity.getEmail(),"Thanks","请妥善保管你的邮箱，万一哪天账号值钱了呢");
             }else {
@@ -72,6 +75,9 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
             String encryptPwd = PasswordUtil.encrypt(password, user.getEmail());
             if (user.getPassword().equals(encryptPwd)) {
                 boolean result = RedisUtils.set(user.getId().toString(), token, 10000L,TimeUnit.HOURS);
+                user.setLastLoginIp(ip);
+                user.setLastLoginTime(nowTime);
+                userRepository.save(user);
                 if (!result) {
                     throw new Exception("redis异常");
                 }

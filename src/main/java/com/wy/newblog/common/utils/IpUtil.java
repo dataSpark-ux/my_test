@@ -1,6 +1,5 @@
 package com.wy.newblog.common.utils;
 
-import org.apache.commons.lang.text.StrTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

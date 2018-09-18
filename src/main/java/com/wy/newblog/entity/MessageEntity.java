@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@Table(name = "t_user")
+@Table(name = "t_message")
 @ApiModel("消息实体")
 public class MessageEntity extends BaseEntity {
 
