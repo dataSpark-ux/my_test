@@ -1,35 +1,51 @@
 package com.wy.newblog.controller;
 import com.wy.newblog.annotation.Access;
+import com.wy.newblog.base.BaseController;
+import com.wy.newblog.common.utils.IpUtil;
 import com.wy.newblog.core.Result;
 import com.wy.newblog.entity.UserEntity;
 import com.wy.newblog.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户管理")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
 	@ApiOperation("创建用户")
     @PostMapping("/register")
-    @Access(authorities = {"admin","user"})
     public Result register(@RequestBody @Valid UserEntity userEntity, HttpServletRequest request) {
-        String access_token = request.getHeader("access_token");
-        System.err.println(access_token);
-
+        String ip = IpUtil.getIpAddr(request);
+        userEntity.setLastLoginIp(ip);
         return userService.save(userEntity);
+    }
+
+    @ApiOperation("登录")
+    @PostMapping("/login")
+    public Result login(@RequestParam @ApiParam(value = "用户名")@NotNull  String username,
+                        @RequestParam @ApiParam(value = "密码")@NotNull  String password,
+                        Boolean rememberMe,
+                        HttpServletRequest request) {
+        String ipAddr = IpUtil.getIpAddr(request);
+        return userService.login(username, password, ipAddr,rememberMe);
+    }
+    @ApiOperation("修改密码")
+    @PutMapping("/modify")
+    public Result modifyPwd(@RequestParam @ApiParam(value = "邮箱")@NotNull String email,
+                            @RequestParam @ApiParam(value = "验证码")@NotNull String refCode,
+                            @RequestParam @ApiParam(value = "新密码")@NotNull String newPwd){
+        return userService.modifyPwd(email,newPwd,refCode);
     }
 }

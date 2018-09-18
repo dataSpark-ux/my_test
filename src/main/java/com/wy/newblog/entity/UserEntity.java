@@ -37,7 +37,7 @@ public class UserEntity extends BaseEntity {
     private String nickname;
 
     @ApiModelProperty(value = "邮箱")
-    @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$",message = "邮箱格式不正确")
     @NotNull
     private String email;
 
@@ -48,5 +48,10 @@ public class UserEntity extends BaseEntity {
     @Min(1)
     private Integer age;
 
-    private Status status;
+
+
+    private String lastLoginIp;
+
+    private Long lastLoginTime;
+
 }

@@ -44,7 +44,7 @@ swagger:
     description: user access token
     modelRef: string
     parmeterType: header
-    required: true
+    required: false
   global-operation-parameters[1]:
     name: timestamp
     description: access timestamp
@@ -63,7 +63,7 @@ swagger:
     json-editor: true
     show-request-headers: true
     request-timeout: 5000
-    submit-methods: get,delete,post
+    submit-methods: get,delete,post,put
 blog:
   # 全局限流
   rateLimit:

@@ -2,6 +2,7 @@ package com.wy.newblog.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wy.newblog.common.utils.SnowFlakeUtil;
+import com.wy.newblog.entity.enums.Status;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -26,7 +27,7 @@ public class BaseEntity implements Serializable {
 
     @Id
     @ApiModelProperty(value = "唯一标识")
-    private String id = String.valueOf(SnowFlakeUtil.getFlowIdInstance().nextId());
+    private Long id = SnowFlakeUtil.getFlowIdInstance().nextId();
 
     @ApiModelProperty(value = "创建者")
     private String createBy;
@@ -36,4 +37,6 @@ public class BaseEntity implements Serializable {
 
     @ApiModelProperty(value = "更新时间")
     private Long updateTime;
+    @ApiModelProperty(value = "状态")
+    private Status status;
 }

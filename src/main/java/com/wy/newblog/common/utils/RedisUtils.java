@@ -1,4 +1,4 @@
-package com.wy.newblog.common;
+package com.wy.newblog.common.utils;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
  * @Version 1.0
  */
 public class RedisUtils {
+
+
     private static RedisTemplate redisTemplate;
 
     /**
@@ -105,7 +107,18 @@ public class RedisUtils {
         }
         return result;
     }
-
+    public static boolean set(final String key, Object value, Long expireTime,TimeUnit time) {
+        boolean result = false;
+        try {
+            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
+            operations.set(key, value);
+            redisTemplate.expire(key, expireTime, time);
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     /**
      * 缓存设置
      * @param redisTemplate
