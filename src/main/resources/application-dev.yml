@@ -24,7 +24,7 @@ spring:
         # 黑名单
         deny:
   rabbitmq:
-    host: 47.94.151.23
+    host: www.dbbaxbb.cn
     port: 5672
     username: guest
     password: guest
