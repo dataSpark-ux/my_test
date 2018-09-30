@@ -84,7 +84,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
         </dependency>
-
+        <!--实体转换器-->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>0.7.4</version>
+        </dependency>
         <!--代码生成器-->
         <dependency>
             <groupId>com.ibeetl</groupId>

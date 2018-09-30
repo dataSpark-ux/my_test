@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * @Version 1.0
  */
 @Service
-public class IMessageServiceImpl extends BaseServiceImpl implements IMessageService {
+public class MessageServiceImpl extends BaseServiceImpl implements IMessageService {
 
     @Resource
     private MessageRepository messageRepository;

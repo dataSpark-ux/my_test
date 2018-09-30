@@ -1,10 +1,12 @@
 package com.wy.newblog.service.impl;
 
 import com.wy.newblog.base.BaseServiceImpl;
+import com.wy.newblog.common.utils.RedisUtils;
 import com.wy.newblog.core.config.EmailConfig;
 import com.wy.newblog.entity.dto.Pair;
 import com.wy.newblog.service.IEmailService;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -30,7 +32,8 @@ public class EmailServiceImpl extends BaseServiceImpl implements IEmailService {
     private EmailConfig emailConfig;
     @Resource
     private JavaMailSender mailSender;
-
+    @Resource
+    private RedisTemplate redisTemplate;
     @Override
     @Async
     public void sendSimpleMail(String sendTo, String titel, String content) {
