@@ -29,7 +29,7 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
     @Resource
     private IEmailService emailService;
     @Resource
-    private IMessageServiceImpl messageService;
+    private MessageServiceImpl messageService;
 
     private Long nowTime = System.currentTimeMillis();
     @Override

@@ -1,12 +1,10 @@
 package com.wy.newblog.controller;
-import com.wy.newblog.annotation.Access;
 import com.wy.newblog.base.BaseController;
 import com.wy.newblog.common.utils.IpUtil;
 import com.wy.newblog.core.Result;
 import com.wy.newblog.entity.UserEntity;
 import com.wy.newblog.service.IUserService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-
+/**
+  * @author WY
+  * @date 2018/9/19
+ */
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户管理")
