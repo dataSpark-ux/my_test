@@ -20,7 +20,9 @@ import java.util.Set;
  */
 @Component
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
-    // 在调用方法之前执行拦截
+    /**
+     * 在调用方法之前执行拦截
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 将handler强转为HandlerMethod, 前面已经证实这个handler就是HandlerMethod
