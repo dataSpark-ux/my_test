@@ -68,8 +68,9 @@ public class OrderServiceImpl implements IOrderService{
             int nowSecond = (int) (cal.getTimeInMillis() / 1000);
             if (nowSecond >= score) {
                 String orderId = (String) ((ZSetOperations.TypedTuple) items.toArray()[0]).getValue();
-                Long orderId1 = redisTemplate.opsForZSet().remove("OrderId", orderId);
-                if (orderId1 != null && orderId1 > 0) {
+                Long num = redisTemplate.opsForZSet().remove("OrderId", orderId);
+                //注意，此处不做处理并发情况下会出现多出现多个线程同时消费一个资源的情况
+                if (num != null && num > 0) {
                     System.out.println(System.currentTimeMillis() + "ms:redis消费了一个任务：消费的订单OrderId为" + orderId);
                 }
             }

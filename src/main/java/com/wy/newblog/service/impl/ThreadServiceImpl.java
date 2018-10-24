@@ -18,7 +18,11 @@ import java.util.concurrent.CountDownLatch;
 @Service
 public class ThreadServiceImpl implements IThreadService {
     private static final int threadNum = 10;
-
+    /**
+     * 利用它可以实现类似计数器的功能。比如有一个任务A，
+     * 它要等待其他4个任务执行完毕之后才能执行，此时就可以利用CountDownLatch来实现这种功能了。
+     *  参数count为计数值
+     * */
     private static CountDownLatch cdl = new CountDownLatch(threadNum);
 
     @Resource
@@ -28,6 +32,7 @@ public class ThreadServiceImpl implements IThreadService {
         orderService.productionDelayMessage();
         for (int i = 0; i < threadNum; i++) {
             new Thread(new DelayMessage()).start();
+            ////将count值减1
             cdl.countDown();
         }
         return null;
@@ -44,6 +49,7 @@ public class ThreadServiceImpl implements IThreadService {
         @Override
         public void run() {
             try {
+                //调用await()方法的线程会被挂起，它会等待直到count值为0才继续执行
                 cdl.await();
             } catch (InterruptedException e) {
                 // TODO: 2018/10/24
