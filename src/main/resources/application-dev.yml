@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.94.151.23:3306/blog?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
     username: root
-    password: yourPassword
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       filter:
@@ -35,7 +35,7 @@ spring:
   redis:
     port: 6379
     host: 47.94.151.23
-    password: root
+    password: 123456
     database: 1
     timeout: 1s
     jedis:
