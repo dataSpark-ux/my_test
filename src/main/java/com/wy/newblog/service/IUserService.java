@@ -42,4 +42,9 @@ public interface IUserService {
      * @date 2018/9/19
      */
     Result modifyPwd(String email, String password, String refcode);
+
+    /**
+     * @return
+     */
+    Result findAll();
 }

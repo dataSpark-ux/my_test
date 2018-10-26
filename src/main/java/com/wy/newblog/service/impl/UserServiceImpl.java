@@ -7,13 +7,20 @@ import com.wy.newblog.core.Result;
 import com.wy.newblog.entity.enums.ResultCode;
 import com.wy.newblog.entity.UserEntity;
 import com.wy.newblog.entity.enums.Status;
+import com.wy.newblog.entity.mapper.UserStructMapper;
+import com.wy.newblog.entity.vo.UserVo;
 import com.wy.newblog.repository.UserRepository;
 import com.wy.newblog.service.IEmailService;
 import com.wy.newblog.service.IUserService;
+import org.jasypt.encryption.StringEncryptor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,6 +37,12 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
     private IEmailService emailService;
     @Resource
     private MessageServiceImpl messageService;
+    @Resource
+    private UserStructMapper userStructMapper;
+    @Resource
+    private StringEncryptor encryptor;
+    @Resource
+    private RedisTemplate redisTemplate;
 
     private Long nowTime = System.currentTimeMillis();
     @Override
@@ -78,6 +91,10 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                 user.setLastLoginIp(ip);
                 user.setLastLoginTime(nowTime);
                 userRepository.save(user);
+                redisTemplate.opsForValue().set("te", user);
+                redisTemplate.opsForHash().put("test", user.getId().toString(), user.toString());
+                Object test = redisTemplate.opsForHash().get("test", user.getId().toString());
+
                 if (!result) {
                     throw new Exception("redis异常");
                 }
@@ -117,6 +134,12 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
         }
         logger.info("修改密码成功===》》{}",email);
         return new Result(ResultCode.OK);
+    }
+
+    @Override
+    public Result findAll() {
+        List<UserEntity> userAll = userRepository.findAll();
+        return new Result(ResultCode.OK,userAll);
     }
 
 
