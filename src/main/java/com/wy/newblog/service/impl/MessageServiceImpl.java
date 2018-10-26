@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 /**
  * @author wy
  * @Date 2018/9/18 16:56
- * @Description  消息
+ * @Description 消息
  * @Version 1.0
  */
 @Service
@@ -27,18 +27,15 @@ public class MessageServiceImpl extends BaseServiceImpl implements IMessageServi
 
     @Resource
     private IEmailService emailService;
+
     @Override
     public Result save(MessageEntity messageEntity) {
-        try {
-            String code = VerifyCodeUtil.generateTextCode(VerifyCodeUtil.TYPE_ALL_MIXED, 6, null);
-            emailService.sendSimpleMail(messageEntity.getMsgTo(),"你正在操作修改密码，请注意是否本人操作","五分钟有效，请尽快处理："+code);
-            boolean result = RedisUtils.set(messageEntity.getMsgTo(), code, 300L);
-            MessageEntity msg = messageRepository.save(messageEntity);
-            if (!result) {
-                throw new Exception("redis异常");
-            }
-        } catch (Exception e) {
-            logger.error("信息发送失败{}",e);
+        String code = VerifyCodeUtil.generateTextCode(VerifyCodeUtil.TYPE_ALL_MIXED, 6, null);
+        emailService.sendSimpleMail(messageEntity.getMsgTo(), "你正在操作修改密码，请注意是否本人操作", "五分钟有效，请尽快处理：" + code);
+        boolean result = RedisUtils.set(messageEntity.getMsgTo(), code, 300L);
+        MessageEntity msg = messageRepository.save(messageEntity);
+        if (!result) {
+            logger.error("信息发送失败,redis异常");
             return new Result(ResultCode.INTERNAL_SERVER_ERROR);
         }
         return new Result(ResultCode.OK);

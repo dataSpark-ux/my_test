@@ -91,6 +91,10 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                 user.setLastLoginIp(ip);
                 user.setLastLoginTime(nowTime);
                 userRepository.save(user);
+                redisTemplate.opsForValue().set("te", user);
+                redisTemplate.opsForHash().put("test", user.getId().toString(), user.toString());
+                Object test = redisTemplate.opsForHash().get("test", user.getId().toString());
+
                 if (!result) {
                     throw new Exception("redis异常");
                 }

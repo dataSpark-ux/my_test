@@ -1,5 +1,9 @@
 package com.wy.newblog.entity.enums;
 
+/**
+ * @author 13002
+ */
+
 public enum Status {
     DELETED(-1, "已删除"),
     UNKNOWN(0, "未知"),

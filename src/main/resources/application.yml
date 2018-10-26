@@ -29,6 +29,8 @@ spring:
         starttls:
           enable: true
           required: true
+  jackson:
+    default-property-inclusion: non_null #如果某一个字段为null，就不再返回这个字段
 swagger:
   enabled: true
   title: blog
@@ -82,5 +84,8 @@ blog:
   loginTimeLimit: 10
   # 错误超过次数后多少分钟后才能继续登录（分钟）
   loginAfterTime: 10
+jasypt:
+  encryptor:
+    password: 123456
 
 
