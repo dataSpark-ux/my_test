@@ -49,4 +49,9 @@ public class UserController extends BaseController {
                             @RequestParam @ApiParam(value = "新密码")@NotNull String newPwd){
         return userService.modifyPwd(email,newPwd,refCode);
     }
+    @ApiOperation("查询所有用户")
+    @GetMapping
+    public Result findAll() {
+        return userService.findAll();
+    }
 }
