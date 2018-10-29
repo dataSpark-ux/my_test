@@ -1,7 +1,9 @@
 package com.wy.newblog.service.impl;
 
 import com.wy.newblog.base.BaseServiceImpl;
+import com.wy.newblog.common.utils.EntityUtils;
 import com.wy.newblog.common.utils.PasswordUtil;
+import com.wy.newblog.common.utils.RedisKeyUtils;
 import com.wy.newblog.common.utils.RedisUtils;
 import com.wy.newblog.core.Result;
 import com.wy.newblog.entity.enums.ResultCode;
@@ -20,6 +22,7 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -91,10 +94,8 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                 user.setLastLoginIp(ip);
                 user.setLastLoginTime(nowTime);
                 userRepository.save(user);
-                redisTemplate.opsForValue().set("te", user);
-                redisTemplate.opsForHash().put("test", user.getId().toString(), user.toString());
-                Object test = redisTemplate.opsForHash().get("test", user.getId().toString());
-
+                Map<String, Object> map = EntityUtils.beanToMap(user);
+                redisTemplate.opsForHash().putAll(RedisKeyUtils.USER_INFO+user.getId(), map);
                 if (!result) {
                     throw new Exception("redis异常");
                 }

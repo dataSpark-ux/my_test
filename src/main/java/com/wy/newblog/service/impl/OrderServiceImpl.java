@@ -1,8 +1,15 @@
 package com.wy.newblog.service.impl;
 
+import com.wy.newblog.common.CommonConst;
 import com.wy.newblog.core.Result;
+import com.wy.newblog.entity.OrderEntity;
+import com.wy.newblog.entity.enums.IsPay;
 import com.wy.newblog.entity.enums.ResultCode;
+import com.wy.newblog.entity.enums.Status;
+import com.wy.newblog.rabbitmq.DelaySender;
+import com.wy.newblog.repository.OrderRepository;
 import com.wy.newblog.service.IOrderService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -10,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
@@ -19,18 +27,40 @@ import java.util.concurrent.CountDownLatch;
  * @Description:
  */
 @Service
-public class OrderServiceImpl implements IOrderService{
-
+public class OrderServiceImpl implements IOrderService {
 
 
     @Resource
-    private  RedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
+    @Resource
+    private DelaySender delaySender;
+    @Resource
+    private OrderRepository orderRepository;
 
     @Override
     public Result sendOrderTest1() {
         productionDelayMessage();
         consumerDelayMessage();
         return new Result(ResultCode.OK);
+    }
+
+    @Override
+    public Result sendOrderTest2(OrderEntity order) {
+        order.setOrderNo(CommonConst.ID);
+        order.setIsPay(IsPay.NO_PAY);
+        order.setStatus(Status.INVALID);
+        OrderEntity or = orderRepository.save(order);
+        delaySender.sendDelay(or.getId());
+        return new Result(ResultCode.OK,or.getId().toString());
+    }
+
+    @Override
+    public Result payOrderTest1(Long orderId) {
+        Optional<OrderEntity> orderOptional = orderRepository.findById(orderId);
+        OrderEntity order = orderOptional.get();
+        order.setIsPay(IsPay.YES_PAY);
+        OrderEntity orderEntity = orderRepository.save(order);
+        return new Result(ResultCode.OK,orderEntity.getId().toString());
     }
 
     /**
@@ -55,6 +85,7 @@ public class OrderServiceImpl implements IOrderService{
                 System.out.println("当前没有等待的任务");
                 try {
                     Thread.sleep(500);
+                    break;
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
