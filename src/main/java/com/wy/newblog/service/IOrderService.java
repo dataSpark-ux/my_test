@@ -13,20 +13,34 @@ public interface IOrderService {
     /**
      * 基于redis实现订单超时
      * @return
+     * @param order
      */
-    Result sendOrderTest1();
+    Result sendOrderRedisTest1(OrderEntity order);
+
+    /**
+     * 消费消息
+     * @return
+     */
+    void sendOrderRedisTest2();
 
     /**
      * 基于rabbitma实现订单超时
      * @param order
      * @return
      */
-    Result sendOrderTest2(OrderEntity order);
+    Result sendOrderRabbitmqTest2(OrderEntity order);
 
     /**
-     * 支付订单
-     * @param order
-     * @return
+     * 支付订单hahah
+     * @param orderId
+     * @return Result
      */
     Result payOrderTest1(Long orderId);
+
+    /**
+     * redis消费订单
+     * @return
+     * @param orderId
+     */
+    Result sendOrderRedisTest3(Long orderId) throws Exception;
 }

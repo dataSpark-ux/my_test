@@ -1,6 +1,8 @@
 package com.wy.newblog.service.impl;
 
+import com.wy.newblog.base.BaseServiceImpl;
 import com.wy.newblog.common.CommonConst;
+import com.wy.newblog.common.utils.RedisKeyUtils;
 import com.wy.newblog.core.Result;
 import com.wy.newblog.entity.OrderEntity;
 import com.wy.newblog.entity.enums.IsPay;
@@ -9,17 +11,16 @@ import com.wy.newblog.entity.enums.Status;
 import com.wy.newblog.rabbitmq.DelaySender;
 import com.wy.newblog.repository.OrderRepository;
 import com.wy.newblog.service.IOrderService;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * @author wy
@@ -27,7 +28,8 @@ import java.util.concurrent.CountDownLatch;
  * @Description:
  */
 @Service
-public class OrderServiceImpl implements IOrderService {
+@Transactional(rollbackFor = Exception.class)
+public class OrderServiceImpl extends BaseServiceImpl implements IOrderService {
 
 
     @Resource
@@ -38,20 +40,78 @@ public class OrderServiceImpl implements IOrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public Result sendOrderTest1() {
-        productionDelayMessage();
-        consumerDelayMessage();
-        return new Result(ResultCode.OK);
+    public Result sendOrderRedisTest1(OrderEntity order) {
+        order.setOrderNo(CommonConst.ID);
+        order.setIsPay(IsPay.NO_PAY);
+        order.setStatus(Status.NORMAL);
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.SECOND, 100);
+        int second3later = (int) (cal1.getTimeInMillis() / 1000);
+        redisTemplate.opsForZSet().add(RedisKeyUtils.USER_ORDERID, order.getId() + "", second3later);
+        OrderEntity orderEntity = orderRepository.save(order);
+        logger.info(LocalDateTime.now() + "【redis生成了一个订单任务】===》》订单ID为：[{}]", order.getId());
+        sendOrderRedisTest2();
+        return new Result(ResultCode.OK, orderEntity.getId().toString());
     }
 
     @Override
-    public Result sendOrderTest2(OrderEntity order) {
+    public void sendOrderRedisTest2() {
+        while (true) {
+            Set<ZSetOperations.TypedTuple> items = redisTemplate.opsForZSet().rangeWithScores(RedisKeyUtils.USER_ORDERID, 0, 1);
+            if (items == null || items.isEmpty()) {
+                System.out.println("当前没有等待的任务");
+                try {
+                    Thread.sleep(900);
+                    break;
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                continue;
+            }
+            double score = ((ZSetOperations.TypedTuple) items.toArray()[0]).getScore();
+
+            Calendar cal = Calendar.getInstance();
+
+            int nowSecond = (int) (cal.getTimeInMillis() / 1000);
+            if (nowSecond >= score) {
+                String orderId = (String) ((ZSetOperations.TypedTuple) items.toArray()[0]).getValue();
+                Long orderId1 = redisTemplate.opsForZSet().remove(RedisKeyUtils.USER_ORDERID, String.valueOf(orderId));
+                if (orderId1 != null && orderId1 > 0) {
+                    logger.info(LocalDateTime.now() + "【redis过期了一个订单任务】===》》订单ID为：[{}]", orderId);
+                    Optional<OrderEntity> orderEntity = orderRepository.findById(Long.valueOf(orderId));
+                    OrderEntity order = orderEntity.get();
+                    if (order.getIsPay().equals(IsPay.NO_PAY)) {
+                        order.setIsPay(IsPay.REFUNDED);
+                    }
+                    orderRepository.save(order);
+                }
+            }
+        }
+    }
+
+    @Override
+    public Result sendOrderRedisTest3(Long orderId) throws Exception {
+        Optional<OrderEntity> order = orderRepository.findById(orderId);
+        OrderEntity orderEntity = order.orElseThrow(() -> new Exception("订单不存在"));
+        orderEntity.setIsPay(IsPay.YES_PAY);
+        OrderEntity or = orderRepository.save(orderEntity);
+        Long count = redisTemplate.opsForZSet().remove(RedisKeyUtils.USER_ORDERID, orderId.toString());
+        if (count == null && count < 0) {
+            throw new Exception("消费订单失败");
+        }
+        logger.info(LocalDateTime.now() + "【redis消费了一个订单任务】===》》订单ID为：[{}]", orderId);
+        return new Result(ResultCode.OK, or.getId().toString());
+    }
+
+    @Override
+    public Result sendOrderRabbitmqTest2(OrderEntity order) {
         order.setOrderNo(CommonConst.ID);
         order.setIsPay(IsPay.NO_PAY);
         order.setStatus(Status.INVALID);
         OrderEntity or = orderRepository.save(order);
         delaySender.sendDelay(or.getId());
-        return new Result(ResultCode.OK,or.getId().toString());
+        return new Result(ResultCode.OK, or.getId().toString());
     }
 
     @Override
@@ -60,7 +120,7 @@ public class OrderServiceImpl implements IOrderService {
         OrderEntity order = orderOptional.get();
         order.setIsPay(IsPay.YES_PAY);
         OrderEntity orderEntity = orderRepository.save(order);
-        return new Result(ResultCode.OK,orderEntity.getId().toString());
+        return new Result(ResultCode.OK, orderEntity.getId().toString());
     }
 
     /**
@@ -77,33 +137,4 @@ public class OrderServiceImpl implements IOrderService {
         }
     }
 
-    public void consumerDelayMessage() {
-        while (true) {
-            Set<ZSetOperations.TypedTuple> items = redisTemplate.opsForZSet().rangeWithScores("OrderId", 0, 1);
-
-            if (items == null || items.isEmpty()) {
-                System.out.println("当前没有等待的任务");
-                try {
-                    Thread.sleep(500);
-                    break;
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                continue;
-            }
-            double score = ((ZSetOperations.TypedTuple) items.toArray()[0]).getScore();
-
-            Calendar cal = Calendar.getInstance();
-
-            int nowSecond = (int) (cal.getTimeInMillis() / 1000);
-            if (nowSecond >= score) {
-                String orderId = (String) ((ZSetOperations.TypedTuple) items.toArray()[0]).getValue();
-                Long orderId1 = redisTemplate.opsForZSet().remove("OrderId", orderId);
-                if (orderId1 != null && orderId1 > 0) {
-                    System.out.println(System.currentTimeMillis() + "ms:redis消费了一个任务：消费的订单OrderId为" + orderId);
-                }
-            }
-        }
-    }
 }

@@ -23,6 +23,6 @@ public class DelayMessageThread implements Runnable {
                 // TODO: 2018/10/24
                 e.printStackTrace();
             }
-            order.consumerDelayMessage();
+//            order.consumerDelayMessage();
         }
 }
