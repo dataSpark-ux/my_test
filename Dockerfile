@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-oraclejdk8
 #指定维护者信息
-MAINTAINER zzf
+MAINTAINER wy
 VOLUME /tmp
 ADD target/newblog-0.0.1-SNAPSHOT.jar blog.jar
 RUN sh -c 'touch /blog.jar'

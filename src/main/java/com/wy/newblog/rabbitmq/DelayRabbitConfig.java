@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author wy
+ */
 @Configuration
 @Slf4j
 public class DelayRabbitConfig {

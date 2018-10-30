@@ -9,4 +9,6 @@ package com.wy.newblog.common.utils;
 public class RedisKeyUtils {
 
     public static final String USER_INFO = "user:info:";
+
+    public static final String USER_ORDERID = "user:order";
 }

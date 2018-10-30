@@ -5,10 +5,10 @@ package com.wy.newblog.entity.enums;
  */
 
 public enum Status {
-    DELETED(-1, "已删除"),
-    UNKNOWN(0, "未知"),
-    NORMAL(1, "正常(有效)"),
-    INVALID(2, "无效"),
+    DELETED(0, "已删除"),
+    UNKNOWN(1, "未知"),
+    NORMAL(2, "正常(有效)"),
+    INVALID(3, "无效"),
     ;
     private final int code;
     private final String text;

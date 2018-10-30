@@ -56,7 +56,7 @@ public class ThreadServiceImpl implements IThreadService {
                 e.printStackTrace();
             }
 
-            order.consumerDelayMessage();
+//            order.consumerDelayMessage();
         }
     }
 
