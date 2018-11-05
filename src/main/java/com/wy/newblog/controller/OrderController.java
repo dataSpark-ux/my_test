@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/order")
-@Api(tags = "订单管理")
+@Api(tags = "订单服务接口")
 public class OrderController extends BaseController {
     @Resource
     private IOrderService orderService;
