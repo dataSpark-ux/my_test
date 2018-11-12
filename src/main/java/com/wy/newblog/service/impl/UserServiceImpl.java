@@ -20,10 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -59,6 +56,8 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                 userEntity.setPassword(encryptPwd);
                 userEntity.setCreateTime(nowTime);
                 user = userRepository.save(userEntity);
+
+
                 emailService.sendSimpleMail(userEntity.getEmail(),"Thanks","请妥善保管你的邮箱，万一哪天账号值钱了呢");
             }else {
                 logger.info("新增失败，用户名已存在{}",userEntity.getUsername());
