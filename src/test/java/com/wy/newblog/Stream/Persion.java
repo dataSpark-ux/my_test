@@ -6,7 +6,7 @@ package com.wy.newblog.Stream;
  * @Description TODO
  * @Version 1.0
  */
-public class Persion {
+public class Persion{
 
     private String student;
 

@@ -1,6 +1,6 @@
 package com.wy.newblog;
 
-import com.spring4all.swagger.EnableSwagger2Doc;
+import com.battcn.swagger.annotation.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;

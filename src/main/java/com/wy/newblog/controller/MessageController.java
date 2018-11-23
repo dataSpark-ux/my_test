@@ -1,11 +1,8 @@
 package com.wy.newblog.controller;
 
-import com.wy.newblog.common.utils.RedisUtils;
-import com.wy.newblog.common.utils.VerifyCodeUtil;
 import com.wy.newblog.core.Result;
 import com.wy.newblog.entity.MessageEntity;
 import com.wy.newblog.entity.enums.ResultCode;
-import com.wy.newblog.service.IEmailService;
 import com.wy.newblog.service.IMessageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+
 
 /**
  * @author wy

@@ -23,7 +23,7 @@ public class LiftOff implements Runnable {
     }
 
     public String status() {
-        System.err.println("Thread.currentThread().getName"+Thread.currentThread().getName());
+        System.err.println("Thread.currentThread().getName===="+Thread.currentThread().getName());
         return "#" + id + "(" + (countDown > 0 ? countDown : "LiffOff") + "),";
     }
     /**

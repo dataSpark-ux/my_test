@@ -1,5 +1,6 @@
 package com.wy.newblog.Stream;
 
+import com.wy.newblog.entity.UserEntity;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -96,5 +97,47 @@ public class test {
         System.out.println("sum is:"+nums.stream().filter(num -> num != null).
         distinct().mapToInt(num -> num * 2).
         peek(System.out::println).skip(2).limit(4).sum());
+    }
+    @Test
+    public void test8() {
+        String aa = "bbb";
+        String cc = "bbb";
+        System.err.println(aa.equals(cc));
+
+        short s1 = 1;
+//        s1 = s1 + 1;
+        s1 += 1;
+        System.err.println(s1);
+    }
+    @Test
+    public void test9(){
+        faxin faxin = new faxin();
+        faxin[] fs = {new faxin(), new faxin()};
+        int i = countGreaterThan(fs, faxin);
+        System.err.println("i===" + i);
+    }
+
+    @Test
+    public  void test10() {
+        Class c1 = new ArrayList<String>().getClass();
+        Class c2 = new ArrayList<Integer>().getClass();
+        System.out.println(c1 == c2); // true
+    }
+
+    public static <T> void copy(List<? super T> dest,List<? extends T> src){
+        for(int i = 0; i < src.size(); i++){
+            dest.set(i,src.get(i));
+        }
+    }
+
+    public  <T extends Comparable<T>> int countGreaterThan(T[] anArray,T elem) {
+        int count = 0;
+        for (T e : anArray) {
+            int i = e.compareTo(elem);
+            if (e.compareTo(elem) > 0) {
+                ++count;
+            }
+        }
+        return count;
     }
 }

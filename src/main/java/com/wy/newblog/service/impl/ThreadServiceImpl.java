@@ -32,6 +32,7 @@ public class ThreadServiceImpl implements IThreadService {
         orderService.productionDelayMessage();
         for (int i = 0; i < threadNum; i++) {
             new Thread(new DelayMessage()).start();
+
             ////将count值减1
             cdl.countDown();
         }
