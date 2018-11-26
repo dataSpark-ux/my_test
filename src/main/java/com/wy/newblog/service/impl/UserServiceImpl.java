@@ -84,7 +84,6 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
         }
         String token;
         try {
-            // 通过ip加密获取新的token
             token = PasswordUtil.encrypt(ip, userName);
             String encryptPwd = PasswordUtil.encrypt(password, user.getEmail());
             if (user.getPassword().equals(encryptPwd)) {
