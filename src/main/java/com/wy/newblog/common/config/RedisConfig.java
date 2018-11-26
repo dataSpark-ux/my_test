@@ -1,4 +1,4 @@
-package com.wy.newblog.core.config;
+package com.wy.newblog.common.config;
 
 
 import com.wy.newblog.common.utils.RedisUtils;

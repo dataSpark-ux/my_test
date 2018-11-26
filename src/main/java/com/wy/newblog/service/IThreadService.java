@@ -1,6 +1,6 @@
 package com.wy.newblog.service;
 
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 
 /**
  * @author wy

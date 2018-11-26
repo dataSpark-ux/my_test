@@ -5,12 +5,11 @@ import com.wy.newblog.common.utils.EntityUtils;
 import com.wy.newblog.common.utils.PasswordUtil;
 import com.wy.newblog.common.utils.RedisKeyUtils;
 import com.wy.newblog.common.utils.RedisUtils;
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.enums.ResultCode;
 import com.wy.newblog.entity.UserEntity;
 import com.wy.newblog.entity.enums.Status;
 import com.wy.newblog.entity.mapper.UserStructMapper;
-import com.wy.newblog.entity.vo.UserVo;
 import com.wy.newblog.repository.UserRepository;
 import com.wy.newblog.service.IEmailService;
 import com.wy.newblog.service.IUserService;
@@ -95,6 +94,7 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                 userRepository.save(user);
                 Map<String, Object> map = EntityUtils.beanToMap(user);
                 redisTemplate.opsForHash().putAll(RedisKeyUtils.USER_INFO+user.getId(), map);
+
                 if (!result) {
                     throw new Exception("redis异常");
                 }

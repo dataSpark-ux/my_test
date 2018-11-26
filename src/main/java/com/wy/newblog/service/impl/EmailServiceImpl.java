@@ -1,8 +1,7 @@
 package com.wy.newblog.service.impl;
 
 import com.wy.newblog.base.BaseServiceImpl;
-import com.wy.newblog.common.utils.RedisUtils;
-import com.wy.newblog.core.config.EmailConfig;
+import com.wy.newblog.common.config.EmailConfig;
 import com.wy.newblog.entity.dto.Pair;
 import com.wy.newblog.service.IEmailService;
 import org.springframework.core.io.FileSystemResource;

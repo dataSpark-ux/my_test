@@ -3,7 +3,7 @@ package com.wy.newblog.service.impl;
 import com.wy.newblog.base.BaseServiceImpl;
 import com.wy.newblog.common.utils.RedisUtils;
 import com.wy.newblog.common.utils.VerifyCodeUtil;
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.MessageEntity;
 import com.wy.newblog.entity.enums.ResultCode;
 import com.wy.newblog.repository.MessageRepository;

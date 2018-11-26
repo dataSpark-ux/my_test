@@ -1,10 +1,8 @@
 package com.wy.newblog.service.impl;
 
 import com.wy.newblog.common.utils.ApplicationContextProvider;
-import com.wy.newblog.core.Result;
-import com.wy.newblog.service.IOrderService;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.service.IThreadService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

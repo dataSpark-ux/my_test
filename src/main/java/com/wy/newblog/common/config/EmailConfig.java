@@ -1,4 +1,4 @@
-package com.wy.newblog.core.config;
+package com.wy.newblog.common.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

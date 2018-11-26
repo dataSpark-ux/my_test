@@ -1,6 +1,6 @@
 package com.wy.newblog.exception;
 
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.enums.ResultCode;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

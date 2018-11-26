@@ -1,4 +1,4 @@
-package com.wy.newblog.core;
+package com.wy.newblog.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wy.newblog.entity.enums.ResultCode;

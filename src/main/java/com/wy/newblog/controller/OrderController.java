@@ -1,12 +1,13 @@
 package com.wy.newblog.controller;
 
 import com.wy.newblog.base.BaseController;
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.OrderEntity;
 import com.wy.newblog.entity.enums.ResultCode;
 import com.wy.newblog.service.IOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,11 +29,13 @@ public class OrderController extends BaseController {
     public Result sendOrderTest1(@RequestBody OrderEntity order) {
         return orderService.sendOrderRedisTest1(order);
     }
+
     @ApiOperation("监听订单")
     @PostMapping("/redis/listener")
     public void sendOrderTest3() {
         orderService.sendOrderRedisTest2();
     }
+
     @ApiOperation("消费订单")
     @PostMapping("/redis/consume/{orderId}")
     public Result sendOrderTest4(@PathVariable("orderId") Long orderId) {
@@ -50,10 +53,17 @@ public class OrderController extends BaseController {
     public Result sendOrderTest2(@RequestBody OrderEntity order) {
         return orderService.sendOrderRabbitmqTest2(order);
     }
+
     @ApiOperation("支付订单")
     @PostMapping("/pay/{orderId}")
     public Result payOrderTest1(@PathVariable("orderId") Long orderId) {
         return orderService.payOrderTest1(orderId);
     }
 
+    @ApiOperation("基于redis的分布式锁")
+    @GetMapping("/lock")
+    public Result redisLockTest() {
+
+        return orderService.lockRedisTest();
+    }
 }

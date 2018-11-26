@@ -1,6 +1,6 @@
 package com.wy.newblog.service;
 
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.OrderEntity;
 
 /**
@@ -39,8 +39,13 @@ public interface IOrderService {
 
     /**
      * redis消费订单
-     * @return
+     * @return Result
      * @param orderId
      */
     Result sendOrderRedisTest3(Long orderId) throws Exception;
+
+    /**
+     * @return
+     */
+    Result lockRedisTest();
 }

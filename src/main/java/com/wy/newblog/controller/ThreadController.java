@@ -1,7 +1,7 @@
 package com.wy.newblog.controller;
 
 import com.wy.newblog.LiftOff;
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.service.IThreadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

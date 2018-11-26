@@ -1,7 +1,7 @@
 package com.wy.newblog.controller;
 import com.wy.newblog.base.BaseController;
 import com.wy.newblog.common.utils.IpUtil;
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.UserEntity;
 import com.wy.newblog.service.IUserService;
 import io.swagger.annotations.Api;

@@ -1,6 +1,6 @@
 package com.wy.newblog.controller;
 
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.MessageEntity;
 import com.wy.newblog.entity.enums.ResultCode;
 import com.wy.newblog.service.IMessageService;

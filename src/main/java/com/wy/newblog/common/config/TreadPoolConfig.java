@@ -1,4 +1,4 @@
-package com.wy.newblog.core.config;
+package com.wy.newblog.common.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.context.annotation.Bean;

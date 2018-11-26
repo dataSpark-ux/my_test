@@ -2,8 +2,9 @@ package com.wy.newblog.service.impl;
 
 import com.wy.newblog.base.BaseServiceImpl;
 import com.wy.newblog.common.CommonConst;
+import com.wy.newblog.common.lock.RedisCase;
 import com.wy.newblog.common.utils.RedisKeyUtils;
-import com.wy.newblog.core.Result;
+import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.OrderEntity;
 import com.wy.newblog.entity.enums.IsPay;
 import com.wy.newblog.entity.enums.ResultCode;
@@ -21,6 +22,10 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wy
@@ -38,6 +43,7 @@ public class OrderServiceImpl extends BaseServiceImpl implements IOrderService {
     private DelaySender delaySender;
     @Resource
     private OrderRepository orderRepository;
+
 
     @Override
     public Result sendOrderRedisTest1(OrderEntity order) {
@@ -102,6 +108,31 @@ public class OrderServiceImpl extends BaseServiceImpl implements IOrderService {
         }
         logger.info(LocalDateTime.now() + "【redis消费了一个订单任务】===》》订单ID为：[{}]", orderId);
         return new Result(ResultCode.OK, or.getId().toString());
+    }
+
+    @Override
+    public Result lockRedisTest() {
+        //定义线程池
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(0, 10,
+                1, TimeUnit.SECONDS,
+                new SynchronousQueue<>());
+        for (int i = 0; i < 10; i++) {
+            pool.execute(() -> {
+                System.err.println("================");
+                RedisCase lock = new RedisCase(redisTemplate,CommonConst.LOCK);
+                lock.lock();
+                //模拟业务执行15秒
+                lock.sleepBySencond(15);
+
+                lock.unlock();
+
+            });
+        }
+        while (pool.getPoolSize() != 0) {
+
+        }
+        return new Result(ResultCode.OK);
+
     }
 
     @Override
