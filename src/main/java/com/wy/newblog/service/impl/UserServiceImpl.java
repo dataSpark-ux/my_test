@@ -9,7 +9,6 @@ import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.enums.ResultCode;
 import com.wy.newblog.entity.UserEntity;
 import com.wy.newblog.entity.enums.Status;
-import com.wy.newblog.entity.mapper.UserStructMapper;
 import com.wy.newblog.repository.UserRepository;
 import com.wy.newblog.service.IEmailService;
 import com.wy.newblog.service.IUserService;
@@ -36,8 +35,6 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
     private IEmailService emailService;
     @Resource
     private MessageServiceImpl messageService;
-    @Resource
-    private UserStructMapper userStructMapper;
     @Resource
     private StringEncryptor encryptor;
     @Resource

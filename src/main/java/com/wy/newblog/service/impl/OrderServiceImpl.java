@@ -47,6 +47,7 @@ public class OrderServiceImpl extends BaseServiceImpl implements IOrderService {
 
     @Override
     public Result sendOrderRedisTest1(OrderEntity order) {
+        System.err.println("9527");
         order.setOrderNo(CommonConst.ID);
         order.setIsPay(IsPay.NO_PAY);
         order.setStatus(Status.NORMAL);
