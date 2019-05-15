@@ -3,6 +3,8 @@ import com.wy.newblog.base.BaseController;
 import com.wy.newblog.common.utils.IpUtil;
 import com.wy.newblog.common.Result;
 import com.wy.newblog.entity.UserEntity;
+import com.wy.newblog.entity.enums.ResultCode;
+import com.wy.newblog.repository.UserMapper;
 import com.wy.newblog.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,9 +12,11 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 /**
   * @author WY
@@ -25,6 +29,8 @@ public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private UserMapper userMapper;
 	@ApiOperation("创建用户")
     @PostMapping("/register")
     public Result register(@RequestBody @Valid UserEntity userEntity, HttpServletRequest request) {
@@ -54,4 +60,11 @@ public class UserController extends BaseController {
     public Result findAll() {
         return userService.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Long id) {
+        Optional<UserEntity> byId = userMapper.findById(id);
+        return new Result(ResultCode.OK, byId.get());
+    }
+
 }
