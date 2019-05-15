@@ -20,17 +20,17 @@ public class ThreadDeadlock {
 
     public static class RenderPageTask implements Callable<String> {
         @Override
-        public String call() throws Exception {
+        public String call() throws ExecutionException, InterruptedException {
             Future<String> header, footer;
             header = exec.submit(new Callable<String>() {
                 @Override
-                public String call() throws Exception {
+                public String call()  {
                     return "tm";
                 }
             });
             footer = exec.submit(new Callable<String>() {
                 @Override
-                public String call() throws Exception {
+                public String call()  {
                     return "wy";
                 }
             });

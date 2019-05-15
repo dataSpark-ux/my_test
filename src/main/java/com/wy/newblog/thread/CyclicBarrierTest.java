@@ -16,27 +16,7 @@ public class CyclicBarrierTest {
 
     static CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
 
-    public static void main(String[] args) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    cyclicBarrier.await();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                System.err.println(1);
-            }
-        }).start();
 
-        try {
-            Thread.sleep(1000);
-            cyclicBarrier.await();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.err.println(2);
-    }
 
 
 }
