@@ -25,7 +25,7 @@ public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
-	@ApiOperation("")
+	@ApiOperation("asasa")
     @PostMapping("/register")
     public Result register(@RequestBody @Valid UserEntity userEntity, HttpServletRequest request) {
         String ip = IpUtil.getIpAddr(request);
