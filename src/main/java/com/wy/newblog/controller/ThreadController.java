@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -31,11 +32,21 @@ public class ThreadController {
     public void threadTest() {
         Result result = threadService.threadOrderTest();
     }
+
     @ApiOperation("线程池的创建与使用")
     @GetMapping
     public void test() {
         for (int i = 0; i < 5; i++) {
             consumerQueueThreadPool.execute(new LiftOff());
         }
+    }
+    @GetMapping("/countDownLatch")
+    public Result countDownLatchTest() {
+        return threadService.countDownLatch();
+    }
+
+    @GetMapping("/countDown")
+    public Result countDown() {
+        return threadService.pageAll();
     }
 }

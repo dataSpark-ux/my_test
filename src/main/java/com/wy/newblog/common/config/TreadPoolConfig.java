@@ -19,8 +19,8 @@ public class TreadPoolConfig {
         ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("consumer-queue-thread-%d").build();
 
-        ExecutorService pool = new ThreadPoolExecutor(5, 5, 0L, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue<Runnable>(5),namedThreadFactory,new ThreadPoolExecutor.AbortPolicy());
+        ExecutorService pool = new ThreadPoolExecutor(10, 20, 0L, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<Runnable>(500),namedThreadFactory,new ThreadPoolExecutor.AbortPolicy());
         return pool;
     }
 }

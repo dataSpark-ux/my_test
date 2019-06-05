@@ -13,4 +13,9 @@ public interface IThreadService {
      * @return
      */
     Result threadOrderTest();
+
+    Result countDownLatch();
+
+    Result pageAll();
+
 }
