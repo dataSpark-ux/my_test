@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Description TODO
  * @Version 1.0
  */
-public interface OrderRepository extends JpaRepository<OrderEntity,Long> {
+public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 }

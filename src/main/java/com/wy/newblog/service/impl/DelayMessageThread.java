@@ -14,15 +14,16 @@ public class DelayMessageThread implements Runnable {
     private static CountDownLatch cdl = new CountDownLatch(threadNum);
     @Resource
     private OrderServiceImpl order;
+
     @Override
     public void run() {
 
-            try {
-                cdl.await();
-            } catch (InterruptedException e) {
-                // TODO: 2018/10/24
-                e.printStackTrace();
-            }
-//            order.consumerDelayMessage();
+        try {
+            cdl.await();
+        } catch (InterruptedException e) {
+            // TODO: 2018/10/24
+            e.printStackTrace();
         }
+//            order.consumerDelayMessage();
+    }
 }

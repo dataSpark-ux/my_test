@@ -16,12 +16,12 @@ public class Receivers {
     @RabbitListener(queues = "test")
     @RabbitHandler
     public void process2(String msg) {
-        System.err.println("receiver2:"+msg);
+        System.err.println("receiver2:" + msg);
     }
 
     @RabbitListener(queues = "test2")
     @RabbitHandler
     public void process(String msg) {
-        System.err.println("receiver2===>>:"+msg);
+        System.err.println("receiver2===>>:" + msg);
     }
 }

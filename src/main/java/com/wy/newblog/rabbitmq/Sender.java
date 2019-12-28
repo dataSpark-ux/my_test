@@ -18,6 +18,6 @@ public class Sender {
 
     public void send() {
         String msg = "hello" + new Date();
-        this.rabbitTemplate.convertAndSend("hello-wy-queue",msg);
+        this.rabbitTemplate.convertAndSend("hello-wy-queue", msg);
     }
 }

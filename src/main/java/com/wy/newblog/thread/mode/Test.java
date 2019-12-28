@@ -7,7 +7,7 @@ package com.wy.newblog.thread.mode;
  * @createTime 2019/04/11
  */
 public class Test {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         new Circle();
     }
 }
@@ -15,14 +15,15 @@ public class Test {
 class Draw {
 
     public Draw(String type) {
-        System.out.println(type+" draw constructor");
+        System.out.println(type + " draw constructor");
     }
 }
 
 class Shape {
     private Draw draw = new Draw("shape");
     public static String a = "a";
-    public Shape(){
+
+    public Shape() {
         System.out.println("shape constructor");
     }
 }
@@ -30,8 +31,9 @@ class Shape {
 class Circle extends Shape {
 
     private Draw draw = new Draw("circle");
+
     public Circle() {
-        System.out.println("circle constructor"+a);
+        System.out.println("circle constructor" + a);
     }
 
 }

@@ -14,8 +14,8 @@ public class LeaveNode {
      */
     private int number;
     /**
-    *请假人
-    */
+     * 请假人
+     */
     private String person;
 
     public LeaveNode(int number, String person) {

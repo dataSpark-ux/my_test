@@ -17,12 +17,14 @@ public class CommonConst {
     public static final Long ID = SnowFlakeUtil.getFlowIdInstance().nextId();
 
     /**
-     *NX|XX, NX——只有在键不存在时才设置它。XX——只有在键已经存在时才设置它
+     * NX|XX, NX——只有在键不存在时才设置它。XX——只有在键已经存在时才设置它
      */
     public static final String NOT_EXIST = "NX";
     public static final String EXIST = "XX";
 
-    /** exx |PX，过期时间单位:EX =秒;PX =毫秒**/
+    /**
+     * exx |PX，过期时间单位:EX =秒;PX =毫秒
+     **/
     public static final String SECONDS = "EX";
     public static final String MILLISECONDS = "PX";
 

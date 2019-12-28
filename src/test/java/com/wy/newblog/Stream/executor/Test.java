@@ -12,14 +12,14 @@ public class Test {
 
     public static void main(String[] args) {
         System.err.println("7887");
-        System.err.println("开始时间"+LocalDateTime.now());
+        System.err.println("开始时间" + LocalDateTime.now());
         for (int i = 0; i < 1000000; i++) {
             new TaskTest().test();
         }
-        System.err.println("结束时间"+LocalDateTime.now());
+        System.err.println("结束时间" + LocalDateTime.now());
     }
 
-    static class TaskTest{
+    static class TaskTest {
 
         public void test() {
             System.err.print("/");

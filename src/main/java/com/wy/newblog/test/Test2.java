@@ -13,9 +13,10 @@ public class Test2 {
         new Thread(new Blocked(), "BlockedThread-1").start();
         new Thread(new Blocked(), "BlockedThread-2").start();
     }
+
     /**
-    *该线程不断的睡眠
-    */
+     * 该线程不断的睡眠
+     */
     static class TimeWaiting implements Runnable {
         @Override
         public void run() {
@@ -27,8 +28,8 @@ public class Test2 {
 
 
     /**
-    *该线程在Waiting.class实力上等待
-    */
+     * 该线程在Waiting.class实力上等待
+     */
     static class Waiting implements Runnable {
         @Override
         public void run() {
@@ -43,9 +44,10 @@ public class Test2 {
             }
         }
     }
+
     /**
-    *改线程在Blocked。class实例上加锁后，不会释放锁
-    */
+     * 改线程在Blocked。class实例上加锁后，不会释放锁
+     */
     static class Blocked implements Runnable {
         @Override
         public void run() {

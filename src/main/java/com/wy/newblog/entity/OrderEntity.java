@@ -31,10 +31,9 @@ public class OrderEntity extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "订单编号")
     private Long orderNo;
 
-    @Enumerated(value=EnumType.ORDINAL)
+    @Enumerated(value = EnumType.ORDINAL)
     @ApiModelProperty(value = "订单状态")
     private IsPay isPay;
-
 
 
 }

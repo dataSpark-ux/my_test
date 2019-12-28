@@ -15,8 +15,8 @@ import java.util.concurrent.RecursiveTask;
  */
 public class Test9ForkJoinCountTast extends RecursiveTask<Integer> {
     /**
-    *阀值
-    */
+     * 阀值
+     */
     private static final int THRESHOLD = 50000000;
 
     private int start;
@@ -38,7 +38,7 @@ public class Test9ForkJoinCountTast extends RecursiveTask<Integer> {
             for (int i = start; i <= end; i++) {
                 sum += i;
             }
-        }else{
+        } else {
             // 如果任务大于阀值，则分裂成两个子任务计算
             int middle = (start + end) / 2;
             Test9ForkJoinCountTast leftTask = new Test9ForkJoinCountTast(start, middle);

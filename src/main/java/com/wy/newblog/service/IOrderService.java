@@ -12,19 +12,22 @@ public interface IOrderService {
 
     /**
      * 基于redis实现订单超时
-     * @return
+     *
      * @param order
+     * @return
      */
     Result sendOrderRedisTest1(OrderEntity order);
 
     /**
      * 消费消息
+     *
      * @return
      */
     void sendOrderRedisTest2();
 
     /**
      * 基于rabbitma实现订单超时
+     *
      * @param order
      * @return
      */
@@ -32,6 +35,7 @@ public interface IOrderService {
 
     /**
      * 支付订单hahah
+     *
      * @param orderId
      * @return Result
      */
@@ -39,8 +43,9 @@ public interface IOrderService {
 
     /**
      * redis消费订单
-     * @return Result
+     *
      * @param orderId
+     * @return Result
      */
     Result sendOrderRedisTest3(Long orderId) throws Exception;
 

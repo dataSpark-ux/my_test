@@ -27,5 +27,4 @@ public class CustomerLine extends ArrayBlockingQueue<Customer> {
     }
 
 
-
 }

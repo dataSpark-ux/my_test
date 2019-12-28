@@ -26,7 +26,7 @@ public class TellerManager implements Runnable {
 
     private static Random random = new Random(47);
 
-    public TellerManager(ExecutorService exec, CustomerLine customers,int adjustmentPeriod) {
+    public TellerManager(ExecutorService exec, CustomerLine customers, int adjustmentPeriod) {
         this.exec = exec;
         this.customers = customers;
         this.adjustmentPeriod = adjustmentPeriod;
@@ -80,7 +80,7 @@ public class TellerManager implements Runnable {
             while (!Thread.interrupted()) {
                 TimeUnit.MILLISECONDS.sleep(adjustmentPeriod);
                 adjustTellernumber();
-                System.out.println(customers+"{");
+                System.out.println(customers + "{");
                 for (Teller teller : workingTellers) {
                     System.out.println(teller.shortString() + "");
                 }
@@ -88,9 +88,9 @@ public class TellerManager implements Runnable {
 
             }
         } catch (InterruptedException e) {
-            System.out.println(this+ "InterruptedException");
+            System.out.println(this + "InterruptedException");
         }
-        System.out.println(this+ "terminating");
+        System.out.println(this + "terminating");
     }
 
     @Override

@@ -12,7 +12,7 @@ public class WheelRobot extends Robot {
 
     @Override
     protected void performService() {
-        System.err.println(this+"installing Wheels");
+        System.err.println(this + "installing Wheels");
         assembler.car().addWheels();
     }
 }

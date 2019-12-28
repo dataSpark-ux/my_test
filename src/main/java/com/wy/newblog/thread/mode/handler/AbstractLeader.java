@@ -12,8 +12,8 @@ public abstract class AbstractLeader {
      */
     public String name;
     /**
-    * 后继者
-    */
+     * 后继者
+     */
     protected AbstractLeader successor;
 
     public AbstractLeader(String name) {

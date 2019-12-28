@@ -21,7 +21,7 @@ public class Jammer implements Runnable {
                 // 直到下一片吐司可用
                 Toast toast = bufferedQueue.take();
                 toast.jam();
-                System.out.println("jammer=="+toast);
+                System.out.println("jammer==" + toast);
                 finishedQueue.put(toast);
             }
         } catch (InterruptedException e) {

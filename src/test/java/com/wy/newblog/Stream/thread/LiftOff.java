@@ -25,12 +25,12 @@ public class LiftOff implements Runnable {
     public String status() {
         return "#" + id + "(" + (countDown > 0 ? countDown : "LiffOff") + "),";
     }
+
     /**
      * 此方法通常总会有某种形式的循环，使得任务一直运行下去直到不再需要，
      * 所以要设定跳出循环的条件（有一种选择是直接从run()返回），通常，run()被挟持无限循环的形式
      * 这就意味着，除非有某个条件使得run()z终止，否则它将永远运行下去
-     *
-     * */
+     */
     @Override
     public void run() {
         while (countDown-- > 0) {

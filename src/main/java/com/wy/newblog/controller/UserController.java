@@ -1,4 +1,5 @@
 package com.wy.newblog.controller;
+
 import com.wy.newblog.base.BaseController;
 import com.wy.newblog.common.utils.IpUtil;
 import com.wy.newblog.common.Result;
@@ -15,8 +16,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
-  * @author WY
-  * @date 2018/9/19
+ * @author WY
+ * @date 2018/9/19
  */
 @RestController
 @RequestMapping("/user")
@@ -25,7 +26,8 @@ public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
-	@ApiOperation("asasa")
+
+    @ApiOperation("asasa")
     @PostMapping("/register")
     public Result register(@RequestBody @Valid UserEntity userEntity, HttpServletRequest request) {
         String ip = IpUtil.getIpAddr(request);
@@ -35,20 +37,22 @@ public class UserController extends BaseController {
 
     @ApiOperation("登录")
     @PostMapping("/login")
-    public Result login(@RequestParam @ApiParam(value = "用户名")@NotNull  String username,
-                        @RequestParam @ApiParam(value = "密码")@NotNull  String password,
+    public Result login(@RequestParam @ApiParam(value = "用户名") @NotNull String username,
+                        @RequestParam @ApiParam(value = "密码") @NotNull String password,
                         Boolean rememberMe,
                         HttpServletRequest request) {
         String ipAddr = IpUtil.getIpAddr(request);
-        return userService.login(username, password, ipAddr,rememberMe);
+        return userService.login(username, password, ipAddr, rememberMe);
     }
+
     @ApiOperation("修改密码")
     @PutMapping("/modify")
-    public Result modifyPwd(@RequestParam @ApiParam(value = "邮箱")@NotNull String email,
-                            @RequestParam @ApiParam(value = "验证码")@NotNull String refCode,
-                            @RequestParam @ApiParam(value = "新密码")@NotNull String newPwd){
-        return userService.modifyPwd(email,newPwd,refCode);
+    public Result modifyPwd(@RequestParam @ApiParam(value = "邮箱") @NotNull String email,
+                            @RequestParam @ApiParam(value = "验证码") @NotNull String refCode,
+                            @RequestParam @ApiParam(value = "新密码") @NotNull String newPwd) {
+        return userService.modifyPwd(email, newPwd, refCode);
     }
+
     @ApiOperation("查询所有用户")
     @GetMapping
     public Result findAll() {

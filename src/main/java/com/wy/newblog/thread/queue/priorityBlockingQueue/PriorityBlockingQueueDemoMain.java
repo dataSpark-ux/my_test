@@ -17,7 +17,7 @@ public class PriorityBlockingQueueDemoMain {
         ExecutorService exec = Executors.newCachedThreadPool();
         PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<>();
 
-        exec.execute(new PrioritizedTask.PrioritizedTaskProducer(queue,exec));
+        exec.execute(new PrioritizedTask.PrioritizedTaskProducer(queue, exec));
         exec.execute(new PrioritizedTask.PrioritizedTaskConsumer(queue));
 
     }

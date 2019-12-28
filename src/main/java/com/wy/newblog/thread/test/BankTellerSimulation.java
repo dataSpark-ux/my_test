@@ -23,7 +23,7 @@ public class BankTellerSimulation {
         CustomerLine customers = new CustomerLine(MAX_LINE_SIZE);
         exec.execute(new CustomerGenerator(customers));
         // 管理 将根据需要添加和删除出纳员
-        exec.execute(new TellerManager(exec,customers,ADJUSTMENT_PERIOD));
+        exec.execute(new TellerManager(exec, customers, ADJUSTMENT_PERIOD));
         if (args.length > 0) {
             TimeUnit.SECONDS.sleep(new Integer(args[0]));
         } else {

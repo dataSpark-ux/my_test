@@ -20,7 +20,7 @@ public class ClientMain {
         departmentHead.setSuccessor(dean);
         dean.setSuccessor(president);
 
-        LeaveNode leaveNode = new LeaveNode(9,"张三");
+        LeaveNode leaveNode = new LeaveNode(9, "张三");
         instructor.handleRequest(leaveNode);
 
 

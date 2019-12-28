@@ -10,10 +10,11 @@ import java.util.concurrent.atomic.AtomicReference;
 public class AtomicReferenceTest {
 
     public static AtomicReference<User> atomicUserRef = new AtomicReference<>();
+
     /**
-    *代码中首先构建一个user对象，然后把user对象设置进AtomicReference中，最后调用
+     * 代码中首先构建一个user对象，然后把user对象设置进AtomicReference中，最后调用
      * compareAndSet方法进行原子更新操作，实现原理同AtomicInteger里的compareAndSet方法。
-    */
+     */
     public static void main(String[] args) {
         User user = new User("conan", 15);
         atomicUserRef.set(user);
@@ -23,7 +24,7 @@ public class AtomicReferenceTest {
         System.out.println(atomicUserRef.get().getOld());
     }
 
-    public static class User{
+    public static class User {
 
         private String name;
 

@@ -11,8 +11,8 @@ public enum ResultCode {
     NOT_FOUND("404", "Not Found"),
     CONFLICT("409", "Conflict"),
     INTERNAL_SERVER_ERROR("500", " Internal Server Error"),
-    ADD_FAILURE("410","新增失败"),
-    UPDATE_FAILURE("410","修改失败"),
+    ADD_FAILURE("410", "新增失败"),
+    UPDATE_FAILURE("410", "修改失败"),
 
     ;
 

@@ -18,9 +18,8 @@ public class TaskWithResult implements Callable<String> {
     @Override
     public String call() throws Exception {
         System.err.println(Thread.currentThread().getName());
-        return "result of TaskWithResult "+id;
+        return "result of TaskWithResult " + id;
     }
-
 
 
 }

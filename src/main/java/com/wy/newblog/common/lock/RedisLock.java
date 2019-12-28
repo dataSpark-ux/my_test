@@ -42,12 +42,12 @@ public abstract class RedisLock implements Lock {
         redisTemplate = ApplicationContextProvider.getBean(RedisTemplate.class);
     }
 
-    public RedisLock(RedisTemplate redisTemplate,String lockKey) {
-        this(redisTemplate,lockKey,UUID.randomUUID().toString()+Thread.currentThread().getId());
+    public RedisLock(RedisTemplate redisTemplate, String lockKey) {
+        this(redisTemplate, lockKey, UUID.randomUUID().toString() + Thread.currentThread().getId());
     }
 
 
-    public RedisLock(RedisTemplate redisTemplate,String lockKey, String lockValue) {
+    public RedisLock(RedisTemplate redisTemplate, String lockKey, String lockValue) {
         this.redisTemplate = redisTemplate;
         this.lockKey = lockKey;
         this.lockValue = lockValue;
@@ -55,12 +55,11 @@ public abstract class RedisLock implements Lock {
 
     /**
      * 开启定时刷新
-     * */
+     */
     protected void scheduleExpirationRenewal() {
         Thread renewalThread = new Thread(new ExpirationRenewal());
         renewalThread.start();
     }
-
 
 
     public void sleepBySencond(int second) {
@@ -106,9 +105,9 @@ public abstract class RedisLock implements Lock {
                         "return redis.call('expire',KEYS[1],ARGV[2]) " +
                         "else " +
                         "return 0 end";
-                RedisScript<String> redisScript  = new DefaultRedisScript<>(checkAndExpireScript, String.class);
-                String execute =(String) redisTemplate.execute(redisScript , Collections.singletonList(lockKey), lockValue);
-                logger.debug("execute===={}",execute);
+                RedisScript<String> redisScript = new DefaultRedisScript<>(checkAndExpireScript, String.class);
+                String execute = (String) redisTemplate.execute(redisScript, Collections.singletonList(lockKey), lockValue);
+                logger.debug("execute===={}", execute);
                 sleepBySencond(10);
             }
         }

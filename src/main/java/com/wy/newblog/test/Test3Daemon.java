@@ -9,9 +9,9 @@ package com.wy.newblog.test;
  */
 public class Test3Daemon {
     /**
-    *Daemon线程被用作完成支持性工作，但是在Java虚拟机退出时Daemon线程中的finally块
+     * Daemon线程被用作完成支持性工作，但是在Java虚拟机退出时Daemon线程中的finally块
      * 并不一定会执行，
-    */
+     */
     public static void main(String[] args) {
         Thread thread = new Thread(new DaemonRunner(), "DaemonRunner");
         thread.setDaemon(true);

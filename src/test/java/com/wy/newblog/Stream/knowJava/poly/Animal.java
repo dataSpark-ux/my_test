@@ -10,7 +10,7 @@ import org.junit.Test;
  */
 public class Animal {
 
-//这就是向上转型，Animal animal = new Cat();
+    //这就是向上转型，Animal animal = new Cat();
 // 将子类对象Cat转化为父类对象Animal。这个时候animal这个引用调用的方法是子类方法
     @Test
     public void main() {
@@ -44,22 +44,23 @@ class Cat extends Animals {
     public void eat() {
         System.err.println("我吃鱼");
     }
-    public void run(){
+
+    public void run() {
         System.out.println("我会游");
     }
 }
 
 class Dog extends Animals {
-    public void  eat() {
+    public void eat() {
         System.err.println("我吃骨头");
     }
 
-    public void run(){
+    public void run() {
         System.out.println("我会跑");
     }
 }
 
-class Animals{
+class Animals {
 
     public void eat() {
         System.err.println("animal thisng");

@@ -2,7 +2,6 @@ package com.wy.newblog.common.utils;
 
 
 /**
- *
  * @author Exrickx
  */
 public class SnowFlakeUtil {
@@ -73,6 +72,7 @@ public class SnowFlakeUtil {
     }
 
     private static SnowFlakeUtil flowIdWorker = new SnowFlakeUtil(1);
+
     public static SnowFlakeUtil getFlowIdInstance() {
         return flowIdWorker;
     }
@@ -96,7 +96,7 @@ public class SnowFlakeUtil {
     }
 
     public static void main(String[] args) {
-        for(int i=0;i<100;i++){
+        for (int i = 0; i < 100; i++) {
             SnowFlakeUtil snowFlakeUtil = SnowFlakeUtil.getFlowIdInstance();
             System.out.println(snowFlakeUtil.nextId());
         }

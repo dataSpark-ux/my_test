@@ -55,7 +55,7 @@ public abstract class Robot implements Runnable {
             //这个我们想知道的
             throw new RuntimeException(e);
         }
-        System.err.println(this+"  off");
+        System.err.println(this + "  off");
     }
 
     private synchronized void powerDown() throws InterruptedException {

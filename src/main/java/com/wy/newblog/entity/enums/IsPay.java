@@ -4,10 +4,9 @@ package com.wy.newblog.entity.enums;
  * @author wy
  */
 public enum IsPay {
-    NO_PAY(0,"未付款"),
-    YES_PAY(1,"已付款"),
-    REFUNDED(2,"已退款")
-    ;
+    NO_PAY(0, "未付款"),
+    YES_PAY(1, "已付款"),
+    REFUNDED(2, "已退款");
     private final int code;
     private final String text;
 
@@ -27,7 +26,7 @@ public enum IsPay {
     public static IsPay nameOf(String name) {
         try {
             return IsPay.valueOf(name);
-        } catch(Exception e) {
+        } catch (Exception e) {
         }
 
         return null;

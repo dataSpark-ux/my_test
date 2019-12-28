@@ -44,8 +44,8 @@ public interface IUserService {
     Result modifyPwd(String email, String password, String refcode);
 
     /**
-     *
      * 测试
+     *
      * @return
      */
     Result findAll();

@@ -27,7 +27,7 @@ public class Toaster implements Runnable {
                 TimeUnit.MILLISECONDS.sleep(100 + rand.nextInt(500));
                 //做吐司
                 Toast t = new Toast(count++);
-                System.out.println("toaster"+t);
+                System.out.println("toaster" + t);
                 toastQueue.put(t);
             }
         } catch (InterruptedException e) {

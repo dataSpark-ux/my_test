@@ -33,6 +33,7 @@ public class EmailServiceImpl extends BaseServiceImpl implements IEmailService {
     private JavaMailSender mailSender;
     @Resource
     private RedisTemplate redisTemplate;
+
     @Override
     @Async
     public void sendSimpleMail(String sendTo, String titel, String content) {
@@ -42,7 +43,7 @@ public class EmailServiceImpl extends BaseServiceImpl implements IEmailService {
         message.setSubject(titel);
         message.setText(content);
         mailSender.send(message);
-        logger.info("发送邮箱信息====》》》{}",sendTo);
+        logger.info("发送邮箱信息====》》》{}", sendTo);
     }
 
     @Override

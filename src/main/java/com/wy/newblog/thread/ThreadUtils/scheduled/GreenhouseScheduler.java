@@ -22,9 +22,11 @@ public class GreenhouseScheduler {
     public synchronized String getThermostat() {
         return thermostat;
     }
+
     public synchronized void setThermostat(String value) {
         thermostat = value;
     }
+
     ScheduledThreadPoolExecutor scheduler =
             new ScheduledThreadPoolExecutor(10);
 
@@ -99,6 +101,7 @@ public class GreenhouseScheduler {
     }
 
     List<DataPoint> data = Collections.synchronizedList(new ArrayList<>());
+
     class Terminate implements Runnable {
         @Override
         public void run() {
@@ -142,8 +145,8 @@ public class GreenhouseScheduler {
     private Calendar lastTime = Calendar.getInstance();
 
     {
-        lastTime.set(Calendar.MINUTE,30);
-        lastTime.set(Calendar.SECOND,00);
+        lastTime.set(Calendar.MINUTE, 30);
+        lastTime.set(Calendar.SECOND, 00);
     }
 
     private float lastTemp = 65.0f;

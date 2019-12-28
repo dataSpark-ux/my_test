@@ -21,6 +21,6 @@ public class Customer {
     public String toString() {
         return "顾客服务时间{" +
                 "服务时间===>>>>>" + serviceTime +
-                '}'+"/n";
+                '}' + "/n";
     }
 }

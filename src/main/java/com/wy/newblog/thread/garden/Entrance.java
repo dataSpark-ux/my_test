@@ -45,7 +45,7 @@ public class Entrance implements Runnable {
                 ++number;
             }
 
-            System.err.println( Thread.currentThread().getName()+"=="+this + "Total: " + count.increment());
+            System.err.println(Thread.currentThread().getName() + "==" + this + "Total: " + count.increment());
 
             try {
                 TimeUnit.MILLISECONDS.sleep(100);
@@ -88,7 +88,7 @@ public class Entrance implements Runnable {
         if (!exec.awaitTermination(250, TimeUnit.MILLISECONDS)) {
             System.err.println("一些未终止的任务");
         }
-        System.out.println("Total: "+Entrance.getTotalCount());
-        System.out.println("Sum of Entrances: : "+Entrance.sumEntrances());
+        System.out.println("Total: " + Entrance.getTotalCount());
+        System.out.println("Sum of Entrances: : " + Entrance.sumEntrances());
     }
 }

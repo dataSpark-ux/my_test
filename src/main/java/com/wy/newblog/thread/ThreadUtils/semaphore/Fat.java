@@ -8,8 +8,8 @@ package com.wy.newblog.thread.ThreadUtils.semaphore;
 public class Fat {
 
     /**
-    *防止优化
-    */
+     * 防止优化
+     */
     private volatile double d;
 
     private static int counter = 0;
@@ -18,13 +18,14 @@ public class Fat {
 
     public Fat() {
         for (int i = 0; i < 10000; i++) {
-            d+=(Math.PI+Math.E)/(double)i;
+            d += (Math.PI + Math.E) / (double) i;
         }
     }
 
     public void operation() {
-        System.out.println("this ==>>"+this);
+        System.out.println("this ==>>" + this);
     }
+
     @Override
     public String toString() {
         return "Fat id :" + id;

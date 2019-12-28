@@ -6,7 +6,7 @@ package com.wy.newblog.thread.java7.synchronize;
  * 方法来增加账户上的余额（balance值）。这个类必须实现Runnable接口，作为一个线程执行。
  * @createTime 2019/05/13
  */
-public class Company implements Runnable{
+public class Company implements Runnable {
 
     private Account account;
 

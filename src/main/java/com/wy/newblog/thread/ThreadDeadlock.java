@@ -24,13 +24,13 @@ public class ThreadDeadlock {
             Future<String> header, footer;
             header = exec.submit(new Callable<String>() {
                 @Override
-                public String call()  {
+                public String call() {
                     return "tm";
                 }
             });
             footer = exec.submit(new Callable<String>() {
                 @Override
-                public String call()  {
+                public String call() {
                     return "wy";
                 }
             });

@@ -13,10 +13,11 @@ public class Bank implements Runnable {
     public Bank(Account account) {
         this.account = account;
     }
+
     /**
-    *7.实现run()方法。
+     * 7.实现run()方法。
      * 它将调用100次account对象上的subtractAmount()方法，用来减少余额（balance值）。
-    */
+     */
     @Override
     public void run() {
         for (int i = 0; i < 100; i++) {

@@ -40,12 +40,12 @@ public class Assembler implements Runnable {
                 car = chassisQueue.take();
 
                 robotPool.hire(EngineRobot.class, this);
-                robotPool.hire(DriveTrainRobot.class,this);
-                robotPool.hire(WheelRobot.class,this);
+                robotPool.hire(DriveTrainRobot.class, this);
+                robotPool.hire(WheelRobot.class, this);
                 cyclicBarrier.await();
                 // 把汽车放到整理车里进行进一步的工作
                 finishingQueue.put(car);
-                System.err.println(car+"121");
+                System.err.println(car + "121");
 
             }
         } catch (InterruptedException | BrokenBarrierException e) {

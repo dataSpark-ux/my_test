@@ -28,6 +28,7 @@ public class Horse implements Runnable {
     public synchronized int getStrides() {
         return strides;
     }
+
     @Override
     public void run() {
         try {

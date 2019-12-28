@@ -20,6 +20,7 @@
 package com.wy.newblog.common.utils;
 
 //import org.apache.commons.codec.binary.Base64;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.crypto.Cipher;
@@ -30,7 +31,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 /**
- *
  * @author wy
  * @date 2018/6/16 16:26
  */
@@ -41,10 +41,8 @@ public class AesUtils {
     /**
      * AES加密
      *
-     * @param passwd
-     *         加密的密钥
-     * @param content
-     *         需要加密的字符串
+     * @param passwd  加密的密钥
+     * @param content 需要加密的字符串
      * @return 返回Base64转码后的加密数据
      * @throws Exception
      */
@@ -67,10 +65,8 @@ public class AesUtils {
     /**
      * AES解密
      *
-     * @param passwd
-     *         加密的密钥
-     * @param encrypted
-     *         已加密的密文
+     * @param passwd    加密的密钥
+     * @param encrypted 已加密的密文
      * @return 返回解密后的数据
      * @throws Exception
      */
@@ -102,8 +98,6 @@ public class AesUtils {
         random.setSeed(password.getBytes());
         //AES 要求密钥长度为 128
         kg.init(128, random);
-
-
 
 
         //生成一个密钥

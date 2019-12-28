@@ -30,15 +30,15 @@ public class Test7WaitNotify {
         notifyThread.start();
     }
 
-    static class Wait implements Runnable{
+    static class Wait implements Runnable {
         @Override
         public void run() {
             // 枷锁，用于lock的Monitor
             synchronized (lock) {
                 // 当条件不满足时，继续wait，同时释放了lock的锁
                 while (flag) {
-                    System.out.println(Thread.currentThread()+" " +
-                            "flag is true .wait@ "+new SimpleDateFormat("HH:mm:ss").format(new Date()));
+                    System.out.println(Thread.currentThread() + " " +
+                            "flag is true .wait@ " + new SimpleDateFormat("HH:mm:ss").format(new Date()));
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {
@@ -46,8 +46,8 @@ public class Test7WaitNotify {
                     }
                 }
                 // 当条件满足时，完成工作
-                System.out.println(Thread.currentThread()+" flag is false. running @ "
-                        +new SimpleDateFormat("HH:mm:ss").format(new Date()));
+                System.out.println(Thread.currentThread() + " flag is false. running @ "
+                        + new SimpleDateFormat("HH:mm:ss").format(new Date()));
             }
         }
     }
@@ -60,7 +60,7 @@ public class Test7WaitNotify {
             synchronized (lock) {
                 // 获取lock的锁，然后进行通知，通知时不会释放lock的锁
                 // 直到当前线程放了lock后，WaitThread才能从wait方法返回
-                System.out.println(Thread.currentThread()+" hold lock. notify @ "+
+                System.out.println(Thread.currentThread() + " hold lock. notify @ " +
                         new SimpleDateFormat("HH:mm::ss").format(new Date()));
                 lock.notifyAll();
                 flag = false;

@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author wy
  * @Description TODO
  * @createTime 2019/04/09
-*/
+ */
 public class Receiver implements Runnable {
 
     private PipedReader in;
@@ -21,7 +21,7 @@ public class Receiver implements Runnable {
     public void run() {
         try {
             while (true) {
-                System.err.println("Read: "+(char)in.read());
+                System.err.println("Read: " + (char) in.read());
             }
         } catch (IOException e) {
             e.printStackTrace();

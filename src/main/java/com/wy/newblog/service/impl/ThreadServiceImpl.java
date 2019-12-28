@@ -60,7 +60,7 @@ public class ThreadServiceImpl implements IThreadService {
         Page<OrderEntity> all = orderRepository.findAll(pageable);
         CopyOnWriteArrayList<Page<OrderEntity>> pages = new CopyOnWriteArrayList<>();
         pages.add(all);
-        CountDownLatch c = new CountDownLatch(all.getTotalPages()-1);
+        CountDownLatch c = new CountDownLatch(all.getTotalPages() - 1);
         for (int i = 1; i < all.getTotalPages(); i++) {
             PageRequest page = PageRequest.of(i, 50);
             exec.execute(() -> {
@@ -91,7 +91,7 @@ public class ThreadServiceImpl implements IThreadService {
             list.add(orders);
         }
         System.err.println(list.size());
-        return new Result(ResultCode.OK,list);
+        return new Result(ResultCode.OK, list);
     }
 
     static class DelayMessage implements Runnable {

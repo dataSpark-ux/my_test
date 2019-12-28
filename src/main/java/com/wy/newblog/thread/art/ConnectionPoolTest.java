@@ -16,6 +16,7 @@ public class ConnectionPoolTest {
     static CountDownLatch start = new CountDownLatch(1);
     // main线程将会等待所有ConnectionRunner结束后才能继续执行
     static CountDownLatch end;
+
     public static void main(String[] args) throws Exception {
 // 线程数量，可以修改线程数量进行观察
         int threadCount = 10;
@@ -39,11 +40,13 @@ public class ConnectionPoolTest {
         int count;
         AtomicInteger got;
         AtomicInteger notGot;
+
         public ConnetionRunner(int count, AtomicInteger got, AtomicInteger notGot) {
             this.count = count;
             this.got = got;
             this.notGot = notGot;
         }
+
         public void run() {
             try {
                 start.await();
@@ -51,8 +54,8 @@ public class ConnectionPoolTest {
             }
             while (count > 0) {
                 try {
-                 // 从线程池中获取连接，如果1000ms内无法获取到，将会返回null
-             // 分别统计连接获取的数量got和未获取到的数量notGot
+                    // 从线程池中获取连接，如果1000ms内无法获取到，将会返回null
+                    // 分别统计连接获取的数量got和未获取到的数量notGot
                     Connection connection = pool.fetchConnection(1000);
                     if (connection != null) {
                         try {

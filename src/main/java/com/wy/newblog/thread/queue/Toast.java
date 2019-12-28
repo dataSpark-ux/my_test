@@ -7,7 +7,7 @@ package com.wy.newblog.thread.queue;
  */
 public class Toast {
 
-    public enum Status{DRY,BUTTERED,JAMMED}
+    public enum Status {DRY, BUTTERED, JAMMED}
 
     private Status status = Status.DRY;
 
@@ -36,7 +36,7 @@ public class Toast {
     @Override
     public String toString() {
         return "Toast{" +
-                "id=" + id +": status"+status+
+                "id=" + id + ": status" + status +
                 '}';
     }
 }

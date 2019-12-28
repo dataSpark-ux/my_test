@@ -16,26 +16,26 @@ import java.util.concurrent.TimeUnit;
  */
 public class RedisCase extends RedisLock {
 
-    public RedisCase(RedisTemplate redisTemplate,String lockKey) {
-        super(redisTemplate,lockKey);
+    public RedisCase(RedisTemplate redisTemplate, String lockKey) {
+        super(redisTemplate, lockKey);
     }
 
     @Override
     public void lock() {
         while (true) {
-            redisTemplate.opsForValue().set("bibi","wdw");
+            redisTemplate.opsForValue().set("bibi", "wdw");
             Boolean result = redisTemplate.opsForValue().setIfAbsent(lockKey, lockValue);
             if (result) {
                 Boolean expire = redisTemplate.expire(lockKey, 30, TimeUnit.SECONDS);
                 if (expire) {
-                    logger.info("【线程ID】:{}",Thread.currentThread().getId()+"【加锁成功！时间】:{}",LocalDateTime.now());
+                    logger.info("【线程ID】:{}", Thread.currentThread().getId() + "【加锁成功！时间】:{}", LocalDateTime.now());
 
                     //开启定时刷新过期时间
                     isOpenExpirationRenewal = true;
                     scheduleExpirationRenewal();
                     break;
                 }
-                logger.info("【线程ID】:{}",Thread.currentThread().getId()+"【获取锁失败，休眠10秒！时间】:{}",LocalDateTime.now());
+                logger.info("【线程ID】:{}", Thread.currentThread().getId() + "【获取锁失败，休眠10秒！时间】:{}", LocalDateTime.now());
                 sleepBySencond(10);
             }
 
@@ -44,7 +44,7 @@ public class RedisCase extends RedisLock {
 
     @Override
     public void unlock() {
-        logger.info("【线程ID】:{}",Thread.currentThread().getId()+"【解锁时间】：{}",LocalDateTime.now());
+        logger.info("【线程ID】:{}", Thread.currentThread().getId() + "【解锁时间】：{}", LocalDateTime.now());
         String checkAndDelScript = "if redis.call('get', KEYS[1]) == ARGV[1] then " +
                 "return redis.call('del', KEYS[1]) " +
                 "else " +
@@ -52,7 +52,7 @@ public class RedisCase extends RedisLock {
                 "end";
         RedisScript<String> DEL_SCRIPT = new DefaultRedisScript<>(checkAndDelScript, String.class);
         Object execute = redisTemplate.execute(DEL_SCRIPT, Collections.singletonList(lockKey), lockValue);
-        logger.debug("execute======{}",execute);
+        logger.debug("execute======{}", execute);
         isOpenExpirationRenewal = false;
     }
 }

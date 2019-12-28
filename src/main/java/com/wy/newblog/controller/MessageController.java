@@ -63,8 +63,8 @@ public class MessageController {
     public Result topicSend1() {
 
         String content = "my topic1";
-        System.err.println("发送者说："+content);
-        amqpTemplate.convertAndSend("exchange","topic.message", content);
+        System.err.println("发送者说：" + content);
+        amqpTemplate.convertAndSend("exchange", "topic.message", content);
         return new Result(ResultCode.OK, content);
     }
 
@@ -73,8 +73,8 @@ public class MessageController {
     public Result topicSend2() {
 
         String content = "my topic2";
-        System.err.println("发送者说："+content);
-        amqpTemplate.convertAndSend("exchange","topic.messages", content);
+        System.err.println("发送者说：" + content);
+        amqpTemplate.convertAndSend("exchange", "topic.messages", content);
         return new Result(ResultCode.OK, content);
     }
 }

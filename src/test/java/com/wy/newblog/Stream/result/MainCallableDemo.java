@@ -34,14 +34,14 @@ public class MainCallableDemo {
                 // get() blocks until completion
                 boolean done = fs.isDone();
                 if (done == true) {
-                    System.err.println(fs.get()+"**");
+                    System.err.println(fs.get() + "**");
                 }
             } catch (InterruptedException e) {
                 System.err.println(e);
                 return;
             } catch (ExecutionException e) {
                 System.err.println(e);
-            }finally {
+            } finally {
                 exec.shutdown();
             }
         }

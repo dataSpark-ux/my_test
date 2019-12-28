@@ -13,7 +13,7 @@ public class Test1 {
 
     private AtomicInteger atomicInteger = new AtomicInteger(0);
 
-    private  int i = 0;
+    private int i = 0;
 
     public static void main(String[] args) {
         final Test1 t = new Test1();
@@ -44,14 +44,14 @@ public class Test1 {
             }
 
         }
-        System.out.println("count==="+t.i);
-        System.out.println("saftCount==="+t.atomicInteger.get());
+        System.out.println("count===" + t.i);
+        System.out.println("saftCount===" + t.atomicInteger.get());
         System.out.println("耗时====》》" + (System.currentTimeMillis() - startTime));
     }
 
     /**
-    *使用cas实现线程安全计数器
-    */
+     * 使用cas实现线程安全计数器
+     */
     private void safeCount() {
         for (; ; ) {
             int i = atomicInteger.get();
@@ -61,10 +61,11 @@ public class Test1 {
             }
         }
     }
+
     /**
-    *非线程安全计数器
-    */
-    private  void count() {
+     * 非线程安全计数器
+     */
+    private void count() {
         i++;
     }
 }

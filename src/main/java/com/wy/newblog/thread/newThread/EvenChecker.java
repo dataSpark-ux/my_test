@@ -30,19 +30,20 @@ public class EvenChecker implements Runnable {
             }
         }
     }
+
     /**
-    *测试任何类型的intgenerator
-    */
+     * 测试任何类型的intgenerator
+     */
     public static void test(IntGenerator generator, int count) {
         System.out.println("press control-c to exit");
         ExecutorService exec = Executors.newCachedThreadPool();
         for (int i = 0; i < count; i++) {
-            exec.execute(new EvenChecker(generator,i));
+            exec.execute(new EvenChecker(generator, i));
         }
         exec.shutdown();
     }
 
     public static void test(IntGenerator gp) {
-        test(gp,10);
+        test(gp, 10);
     }
 }

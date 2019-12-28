@@ -23,8 +23,7 @@ import java.util.Enumeration;
  * version V1.0.0
  * 使用@Aspect注解将一个java类定义为切面类
  * 使用@Pointcut定义一个切入点，可以是一个规则表达式，比如下例中某个package下的所有函数，也可以是一个注解等。
- * @Order(i)i的值越小，优先值越高
- * 在切入点前的操作，按order的值由小到大执行
+ * @Order(i)i的值越小，优先值越高 在切入点前的操作，按order的值由小到大执行
  * 在切入点后的操作，按order的值由大到小执行
  */
 @Aspect
@@ -35,8 +34,9 @@ public class WebLogAspect {
     private Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
     /**
      * 此处会有同步问题，引入ThreadLocal对象
-     * */
+     */
     ThreadLocal<Long> startTime = new ThreadLocal<>();
+
     /**
      * 定义一个切入点.
      * 解释下：
@@ -46,8 +46,8 @@ public class WebLogAspect {
      * ~ 第四个 * 定义在web包或者子包
      * ~ 第五个 * 任意方法
      * ~ .. 匹配任意数量的参数.
-     *
-     *
+     * <p>
+     * <p>
      * 根据需要在切入点不同位置的切入内容
      * 使用@Before在切入点开始处切入内容
      * 使用@After在切入点结尾处切入内容

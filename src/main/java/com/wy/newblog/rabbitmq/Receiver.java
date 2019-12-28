@@ -13,13 +13,11 @@ import org.springframework.stereotype.Component;
 public class Receiver {
 
 
-
     @RabbitListener(queues = "test")
     @RabbitHandler
     public void process(String msg) {
-        System.err.println("receiver:"+msg);
+        System.err.println("receiver:" + msg);
     }
-
 
 
 }

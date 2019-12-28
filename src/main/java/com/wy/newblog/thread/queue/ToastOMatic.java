@@ -15,12 +15,12 @@ import java.util.concurrent.TimeUnit;
 public class ToastOMatic {
     public static void main(String[] args) throws InterruptedException {
         ToastQueue dryQueue = new ToastQueue(),
-                   bufferedQueue = new ToastQueue(),
-                   finishedQueue = new ToastQueue();
+                bufferedQueue = new ToastQueue(),
+                finishedQueue = new ToastQueue();
         ExecutorService exec = Executors.newCachedThreadPool();
         exec.execute(new Toaster(dryQueue));
-        exec.execute(new Butterer(dryQueue,bufferedQueue));
-        exec.execute(new Jammer(bufferedQueue,finishedQueue));
+        exec.execute(new Butterer(dryQueue, bufferedQueue));
+        exec.execute(new Jammer(bufferedQueue, finishedQueue));
         exec.execute(new Eater(finishedQueue));
         TimeUnit.SECONDS.sleep(5);
         exec.shutdownNow();

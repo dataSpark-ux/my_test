@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * @Description 柜员
  * @createTime 2019/04/14
  */
-public class Teller implements Runnable,Comparable<Teller>{
+public class Teller implements Runnable, Comparable<Teller> {
 
 
     private static int counter = 0;
@@ -38,7 +38,7 @@ public class Teller implements Runnable,Comparable<Teller>{
             while (!Thread.interrupted()) {
                 Customer customer = customers.take();
                 TimeUnit.MILLISECONDS.sleep(customer.getServiceTime());
-                synchronized (this){
+                synchronized (this) {
                     customersServed++;
                     while (!servingCustomerLine) {
                         wait();
@@ -46,9 +46,9 @@ public class Teller implements Runnable,Comparable<Teller>{
                 }
             }
         } catch (InterruptedException e) {
-            System.err.println(this+"  InterruptedException");
+            System.err.println(this + "  InterruptedException");
         }
-        System.err.println(this+"  terminating");
+        System.err.println(this + "  terminating");
     }
 
     public synchronized void doSomethingElse() {

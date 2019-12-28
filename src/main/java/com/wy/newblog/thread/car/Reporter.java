@@ -5,7 +5,7 @@ package com.wy.newblog.thread.car;
  * @Description
  * @createTime 2019/03/24
  */
-public class Reporter implements Runnable{
+public class Reporter implements Runnable {
 
     private CarQueue carQueue;
 

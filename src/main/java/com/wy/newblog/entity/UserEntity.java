@@ -9,9 +9,10 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
+
 /**
-  * @author WY
-  * @date 2018/9/13
+ * @author WY
+ * @date 2018/9/13
  */
 @Data
 @Entity
@@ -37,7 +38,7 @@ public class UserEntity extends BaseEntity {
     private String nickname;
 
     @ApiModelProperty(value = "邮箱")
-    @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$",message = "邮箱格式不正确")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", message = "邮箱格式不正确")
     @NotNull
     private String email;
 
@@ -47,7 +48,6 @@ public class UserEntity extends BaseEntity {
     @Max(50)
     @Min(1)
     private Integer age;
-
 
 
     private String lastLoginIp;

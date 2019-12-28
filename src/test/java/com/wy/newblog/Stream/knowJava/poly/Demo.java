@@ -3,14 +3,11 @@ package com.wy.newblog.Stream.knowJava.poly;
 /**
  * @author
  * @Date 2018/10/8 14:27
- * @Description
- *
- * 多态，简而言之就是同一个行为具有多个不同表现形式或形态的能力。
+ * @Description 多态，简而言之就是同一个行为具有多个不同表现形式或形态的能力。
  * 多态的分类：运行时多态和编译时多态。
  * 运行时多态的前提：继承（实现），重写，向上转型
  * 向上转型与向下转型。
  * 继承链中对象方法的调用的优先级：this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)。
-
  */
 public class Demo {
 
@@ -39,6 +36,7 @@ public class Demo {
     }
 
 }
+
 class A {
     public String show(A obj) {
         return "A and A";

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CarBuilder {
     public static void main(String[] args) throws InterruptedException {
-        CarQueue chassisQueue = new CarQueue(),finishingQueue = new CarQueue() ;
+        CarQueue chassisQueue = new CarQueue(), finishingQueue = new CarQueue();
 
         ExecutorService exec = Executors.newCachedThreadPool();
 
@@ -19,7 +19,7 @@ public class CarBuilder {
         exec.execute(new EngineRobot(robotPool));
         exec.execute(new DriveTrainRobot(robotPool));
         exec.execute(new WheelRobot(robotPool));
-        exec.execute(new Assembler(chassisQueue,finishingQueue,robotPool));
+        exec.execute(new Assembler(chassisQueue, finishingQueue, robotPool));
         exec.execute(new Reporter(finishingQueue));
         // 通过生产机箱来启动所有运行
         exec.execute(new ChassisBuilder(chassisQueue));

@@ -5,13 +5,13 @@ package com.wy.newblog.thread.queue;
  * @Description 吃吐司
  * @createTime 2019/04/03
  */
-public class Eater implements Runnable{
+public class Eater implements Runnable {
 
     private ToastQueue finishedQueue;
 
     private int counter = 0;
 
-    public Eater(ToastQueue finished){
+    public Eater(ToastQueue finished) {
         finishedQueue = finished;
     }
 

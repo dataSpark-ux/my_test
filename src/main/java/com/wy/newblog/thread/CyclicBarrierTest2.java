@@ -11,7 +11,7 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class CyclicBarrierTest2 {
 
-    static CyclicBarrier cyclicBarrier = new CyclicBarrier(2,new A());
+    static CyclicBarrier cyclicBarrier = new CyclicBarrier(2, new A());
 
     public static void main(String[] args) {
 

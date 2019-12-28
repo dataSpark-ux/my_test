@@ -41,6 +41,7 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
     private RedisTemplate redisTemplate;
 
     private Long nowTime = System.currentTimeMillis();
+
     @Override
     public Result save(UserEntity userEntity) {
         UserEntity user;
@@ -54,29 +55,29 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                 user = userRepository.save(userEntity);
 
 
-                emailService.sendSimpleMail(userEntity.getEmail(),"Thanks","请妥善保管你的邮箱，万一哪天账号值钱了呢");
-            }else {
-                logger.info("新增失败，用户名已存在{}",userEntity.getUsername());
+                emailService.sendSimpleMail(userEntity.getEmail(), "Thanks", "请妥善保管你的邮箱，万一哪天账号值钱了呢");
+            } else {
+                logger.info("新增失败，用户名已存在{}", userEntity.getUsername());
                 return new Result(ResultCode.ADD_FAILURE.getCode(), "用户名已存在");
             }
         } catch (Exception e) {
             logger.error("新增用户失败，原因{}", e);
             return new Result(ResultCode.INTERNAL_SERVER_ERROR);
         }
-        logger.info("新增成功==>>用户{}",userEntity.getUsername());
+        logger.info("新增成功==>>用户{}", userEntity.getUsername());
         return new Result(ResultCode.OK, user.getId());
     }
 
     @Override
-    public Result login(String userName, String password,String ip,Boolean rememberMe) {
+    public Result login(String userName, String password, String ip, Boolean rememberMe) {
 
         UserEntity user = userRepository.findByUsername(userName);
         if (StringUtils.isEmpty(user)) {
-            logger.info("当前用户不存在======》》{}",userName);
+            logger.info("当前用户不存在======》》{}", userName);
             return new Result(ResultCode.NOT_FOUND);
         }
         if (!user.getStatus().equals(Status.INVALID)) {
-            logger.error("用户已被禁用{}",user);
+            logger.error("用户已被禁用{}", user);
             return new Result(ResultCode.ADD_FAILURE.getCode(), "用户已被禁用", null);
         }
         String token;
@@ -84,17 +85,17 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
             token = PasswordUtil.encrypt(ip, userName);
             String encryptPwd = PasswordUtil.encrypt(password, user.getEmail());
             if (user.getPassword().equals(encryptPwd)) {
-                boolean result = RedisUtils.set(user.getId().toString(), token, 10000L,TimeUnit.HOURS);
+                boolean result = RedisUtils.set(user.getId().toString(), token, 10000L, TimeUnit.HOURS);
                 user.setLastLoginIp(ip);
                 user.setLastLoginTime(nowTime);
                 userRepository.save(user);
                 Map<String, Object> map = EntityUtils.beanToMap(user);
-                redisTemplate.opsForHash().putAll(RedisKeyUtils.USER_INFO+user.getId(), map);
+                redisTemplate.opsForHash().putAll(RedisKeyUtils.USER_INFO + user.getId(), map);
 
                 if (!result) {
                     throw new Exception("redis异常");
                 }
-            }else {
+            } else {
                 logger.info("密码不正确===》》{}", userName);
                 return new Result(ResultCode.ADD_FAILURE.getCode(), "用户密码不正确");
             }
@@ -102,7 +103,7 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
             logger.error("登录失败，原因{}", e);
             return new Result(ResultCode.INTERNAL_SERVER_ERROR.getCode(), "登录失败");
         }
-        return new Result(ResultCode.OK,token);
+        return new Result(ResultCode.OK, token);
     }
 
     @Override
@@ -120,22 +121,22 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
                     return new Result(ResultCode.UPDATE_FAILURE);
                 }
             } else {
-                logger.info("验证码输入错误===》》{}",email);
+                logger.info("验证码输入错误===》》{}", email);
                 return new Result(ResultCode.UPDATE_FAILURE.getCode(), "验证码输入错误");
             }
         } catch (Exception e) {
-            logger.error("更新失败 {}",email);
+            logger.error("更新失败 {}", email);
             e.printStackTrace();
             return new Result(ResultCode.INTERNAL_SERVER_ERROR);
         }
-        logger.info("修改密码成功===》》{}",email);
+        logger.info("修改密码成功===》》{}", email);
         return new Result(ResultCode.OK);
     }
 
     @Override
     public Result findAll() {
         List<UserEntity> userAll = userRepository.findAll();
-        return new Result(ResultCode.OK,userAll);
+        return new Result(ResultCode.OK, userAll);
     }
 
 

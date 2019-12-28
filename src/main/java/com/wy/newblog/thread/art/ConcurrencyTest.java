@@ -8,6 +8,7 @@ package com.wy.newblog.thread.art;
 public class ConcurrencyTest {
 
     private static final long count = 5;
+
     public static void main(String[] args) throws InterruptedException {
         concurrency();
 //        serial();
@@ -17,7 +18,7 @@ public class ConcurrencyTest {
         long start = System.currentTimeMillis();
         Thread thread = null;
         for (int i = 0; i < 2; i++) {
-             thread = new Thread(new Runnable() {
+            thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     int a = 0;
@@ -31,14 +32,13 @@ public class ConcurrencyTest {
         }
 
 
-
         int b = 0;
         for (long i = 0; i < count; i++) {
             b--;
         }
         long time = System.currentTimeMillis() - start;
         thread.join();
-        System.out.println("concurrency :" + time+"ms,b="+b);
+        System.out.println("concurrency :" + time + "ms,b=" + b);
     }
 
 

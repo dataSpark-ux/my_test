@@ -22,7 +22,7 @@ public class HeapOOM {
 
     }
 
-    static class OOMObject{
+    static class OOMObject {
 
     }
 }

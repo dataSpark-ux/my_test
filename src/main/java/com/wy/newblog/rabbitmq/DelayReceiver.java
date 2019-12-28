@@ -26,19 +26,19 @@ public class DelayReceiver {
 
     @RabbitListener(queues = {DelayRabbitConfig.ORDER_QUEUE_NAME})
     public void orderDelayQueue(Long orderId, Message message, Channel channel) {
-        log.info("【订单Id】-[{}]-【message】-[{}]-【channel】-[{}]",orderId,message,channel);
+        log.info("【订单Id】-[{}]-【message】-[{}]-【channel】-[{}]", orderId, message, channel);
         log.info("###########################################");
         log.info("【orderDelayQueue 监听的消息】 - 【消费时间】 - [{}]- 【订单内容】 - [{}]", LocalDateTime.now(), orderId);
         Optional<OrderEntity> order = orderRepository.findById(orderId);
-        log.info("【订单状态】-[{}]",order.get().getIsPay());
+        log.info("【订单状态】-[{}]", order.get().getIsPay());
         OrderEntity orderEntity = order.get();
-        if(orderEntity.getIsPay().code()== 0) {
+        if (orderEntity.getIsPay().code() == 0) {
             orderEntity.setStatus(Status.DELETED);
             OrderEntity or = orderRepository.save(orderEntity);
             log.info("【该订单未支付，取消订单】" + or.toString());
-        } else if(orderEntity.getIsPay().code() == 1) {
+        } else if (orderEntity.getIsPay().code() == 1) {
             log.info("【该订单已完成支付】");
-        } else if(orderEntity.getIsPay().code() == 2) {
+        } else if (orderEntity.getIsPay().code() == 2) {
             log.info("【该订单已取消】");
         }
         log.info("###########################################");

@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * prioritizedTask被赋予了一个优先级数字，以此来提供这种顺序
  * @createTime 2019/04/11
  */
-public class PrioritizedTask implements Runnable,Comparable<PrioritizedTask>{
+public class PrioritizedTask implements Runnable, Comparable<PrioritizedTask> {
 
     private Random random = new Random(47);
 
@@ -45,7 +45,7 @@ public class PrioritizedTask implements Runnable,Comparable<PrioritizedTask>{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("this:  "+this);
+        System.out.println("this:  " + this);
     }
 
     @Override
@@ -71,6 +71,7 @@ public class PrioritizedTask implements Runnable,Comparable<PrioritizedTask>{
             exec = e;
 
         }
+
         @Override
         public void run() {
             int count = 0;
@@ -81,12 +82,12 @@ public class PrioritizedTask implements Runnable,Comparable<PrioritizedTask>{
                 }
             }
             System.err.println("yesOrNo");
-            System.out.println(this+"Calling shutdownNow()");
+            System.out.println(this + "Calling shutdownNow()");
             exec.shutdownNow();
         }
     }
 
-   static class PrioritizedTaskProducer implements Runnable {
+    static class PrioritizedTaskProducer implements Runnable {
 
         private Random random = new Random(47);
 
@@ -122,7 +123,7 @@ public class PrioritizedTask implements Runnable,Comparable<PrioritizedTask>{
         }
     }
 
-  static   class PrioritizedTaskConsumer implements Runnable {
+    static class PrioritizedTaskConsumer implements Runnable {
 
         private PriorityBlockingQueue<Runnable> queue;
 

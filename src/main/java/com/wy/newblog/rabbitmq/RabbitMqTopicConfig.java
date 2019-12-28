@@ -18,23 +18,25 @@ public class RabbitMqTopicConfig {
 
     /**
      * 只接一个topic
-     * */
+     */
     final static String message = "topic.message";
     /**
      * 接收多个topic
-     * */
+     */
     final static String messages = "topic.messages";
 
     @Bean
     public Queue queueMessage() {
         return new Queue(RabbitMqTopicConfig.message);
     }
+
     @Bean
     public Queue queueMessages() {
         return new Queue(RabbitMqTopicConfig.messages);
     }
+
     @Bean
-    TopicExchange exchange(){
+    TopicExchange exchange() {
         return new TopicExchange("exchange");
     }
 
@@ -48,5 +50,5 @@ public class RabbitMqTopicConfig {
         //这里的#表示零个或多个词
         return BindingBuilder.bind(queueMessages).to(exchange).with("topic.#");
     }
-    
+
 }

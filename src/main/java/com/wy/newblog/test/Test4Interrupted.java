@@ -31,8 +31,8 @@ public class Test4Interrupted {
         sleepThread.interrupt();
         busyThread.interrupt();
 
-        System.out.println("SleepThread interrupted is ==》"+sleepThread.isInterrupted());
-        System.out.println("BusyThread interrupted is ===》"+busyThread.isInterrupted());
+        System.out.println("SleepThread interrupted is ==》" + sleepThread.isInterrupted());
+        System.out.println("BusyThread interrupted is ===》" + busyThread.isInterrupted());
         // 防止SleepThread和BusyThread 立刻退出
         SleepUtils.second(2);
     }

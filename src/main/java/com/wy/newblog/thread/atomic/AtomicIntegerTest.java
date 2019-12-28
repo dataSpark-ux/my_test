@@ -22,6 +22,7 @@ public class AtomicIntegerTest implements Runnable {
     public void evenIncrement() {
         i.addAndGet(2);
     }
+
     @Override
     public void run() {
         while (true) {
@@ -36,7 +37,7 @@ public class AtomicIntegerTest implements Runnable {
                 System.err.println("Aborting");
                 System.exit(0);
             }
-        },5000);
+        }, 5000);
         ExecutorService exec = Executors.newCachedThreadPool();
         AtomicIntegerTest ait = new AtomicIntegerTest();
         exec.execute(ait);

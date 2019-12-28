@@ -22,7 +22,7 @@ public class Test8Join {
         Thread previous = Thread.currentThread();
         for (int i = 0; i < 10; i++) {
             // 每个线程拥有一个引用，需要等待前一个线程终止，才能从等待中返回
-            Thread thread = new Thread(new Domino(previous),String.valueOf(i));
+            Thread thread = new Thread(new Domino(previous), String.valueOf(i));
             thread.start();
             previous = thread;
         }
@@ -50,14 +50,14 @@ public class Test8Join {
             String name = Thread.currentThread().getName();
 
 
-                try {
-                    thread.join();
-                    if (Integer.valueOf(name) % 2 == 0) {
-                        Thread.sleep(10000);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            try {
+                thread.join();
+                if (Integer.valueOf(name) % 2 == 0) {
+                    Thread.sleep(10000);
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println(Thread.currentThread().getName() + "terminate");
         }
     }

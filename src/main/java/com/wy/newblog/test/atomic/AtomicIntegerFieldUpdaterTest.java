@@ -12,9 +12,9 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 public class AtomicIntegerFieldUpdaterTest {
 
     /**
-    *创建原子更新器，
+     * 创建原子更新器，
      * 并设置需要更新的对象类和对象的属性
-    */
+     */
     private static AtomicIntegerFieldUpdater<User> a =
             AtomicIntegerFieldUpdater.newUpdater(User.class, "old");
 
@@ -28,7 +28,7 @@ public class AtomicIntegerFieldUpdaterTest {
     }
 
 
-  public static class User{
+    public static class User {
 
         private String name;
 

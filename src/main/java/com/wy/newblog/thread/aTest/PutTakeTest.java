@@ -20,5 +20,4 @@ public class PutTakeTest {
     private final AtomicInteger takeSum = new AtomicInteger(0);
 
 
-
 }

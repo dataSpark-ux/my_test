@@ -11,14 +11,13 @@ import java.util.concurrent.TimeUnit;
  * 在代码清单4-9所示的例子中，创建了一个线程CountThread，它不断地进行变量累加，而
  * 主线程尝试对其进行中断操作和停止操作
  * @createTime 2019/04/21
- *
  */
 public class Test6Shutdown {
     /**
-    *示例在执行过程中，main线程通过中断操作和cancel()方法均可使CountThread得以终止。
+     * 示例在执行过程中，main线程通过中断操作和cancel()方法均可使CountThread得以终止。
      * 这种通过标识位或者中断操作的方式能够使线程在终止时有机会去清理资源，而不是武断地
      * 将线程停止，因此这种终止线程的做法显得更加安全和优雅。
-    */
+     */
     public static void main(String[] args) throws InterruptedException {
         Runner one = new Runner();
         Thread countThread = new Thread(one, "CountThread");
@@ -37,6 +36,7 @@ public class Test6Shutdown {
     private static class Runner implements Runnable {
         private long i;
         private volatile boolean on = true;
+
         @Override
         public void run() {
             while (on && !Thread.currentThread().isInterrupted()) {

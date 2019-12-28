@@ -10,12 +10,11 @@ public class Order implements Serializable {
 
     private static final long serialVersionUID = -2221214252163879885L;
     /**
-     *  订单id
+     * 订单id
      */
     private String orderId;
     /**
-     *
-     *订单状态 0：未支付，1：已支付，2：订单已取消
+     * 订单状态 0：未支付，1：已支付，2：订单已取消
      */
 
     private Integer orderStatus;

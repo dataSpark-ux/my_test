@@ -19,7 +19,6 @@ public class CustomerGenerator implements Runnable {
     }
 
 
-
     @Override
     public void run() {
         try {

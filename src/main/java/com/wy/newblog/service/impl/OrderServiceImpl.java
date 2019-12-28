@@ -77,7 +77,6 @@ public class OrderServiceImpl extends BaseServiceImpl implements IOrderService {
                 continue;
             }
             double score = ((ZSetOperations.TypedTuple) items.toArray()[0]).getScore();
-
             Calendar cal = Calendar.getInstance();
 
             int nowSecond = (int) (cal.getTimeInMillis() / 1000);
@@ -120,7 +119,7 @@ public class OrderServiceImpl extends BaseServiceImpl implements IOrderService {
         for (int i = 0; i < 10; i++) {
             pool.execute(() -> {
                 System.err.println("================");
-                RedisCase lock = new RedisCase(redisTemplate,CommonConst.LOCK);
+                RedisCase lock = new RedisCase(redisTemplate, CommonConst.LOCK);
                 lock.lock();
                 //模拟业务执行15秒
                 lock.sleepBySencond(15);

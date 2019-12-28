@@ -31,10 +31,10 @@ public class HorseRace {
                     // 赛道上的围栏
                     s.append("=");
                 }
-                System.err.println("s==="+s);
+                System.err.println("s===" + s);
                 for (Horse hors : horses) {
-                    if (hors.getStrides()>=FINISH_LINE) {
-                        System.err.println(hors+" won");
+                    if (hors.getStrides() >= FINISH_LINE) {
+                        System.err.println(hors + " won");
                         exec.shutdownNow();
                         return;
                     }

@@ -49,6 +49,6 @@ public class Stream {
         Map<String, Long> collect2 = list.stream().
                 collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        collect2.entrySet().forEach(c-> System.err.println("k=="+c.getKey()+"v=="+c.getValue()));
+        collect2.entrySet().forEach(c -> System.err.println("k==" + c.getKey() + "v==" + c.getValue()));
     }
 }

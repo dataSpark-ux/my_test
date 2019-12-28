@@ -29,7 +29,7 @@ public enum Status {
     public static Status nameOf(String name) {
         try {
             return Status.valueOf(name);
-        } catch(Exception e) {
+        } catch (Exception e) {
         }
 
         return null;

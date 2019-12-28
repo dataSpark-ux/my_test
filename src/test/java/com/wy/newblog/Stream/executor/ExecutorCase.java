@@ -20,17 +20,17 @@ public class ExecutorCase {
     private static Executor executor = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) {
-        System.err.println("开始时间"+LocalDateTime.now());
+        System.err.println("开始时间" + LocalDateTime.now());
 
 
         for (int i = 0; i < 1000000; i++) {
             executor.execute(new Task());
         }
-        System.err.println("结束时间"+LocalDateTime.now());
+        System.err.println("结束时间" + LocalDateTime.now());
 
     }
 
-    static class Task implements Runnable{
+    static class Task implements Runnable {
 
         @Override
         public void run() {

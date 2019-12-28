@@ -18,10 +18,11 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
     /**
-    *3.实现一个addAmount()方法，用来根据传入的参数增加balance的值。
+     * 3.实现一个addAmount()方法，用来根据传入的参数增加balance的值。
      * 由于应该只有一个线程能改变balance的值，所以使用synchronized关键字将这个方法转换成临界区。
-    */
+     */
     public synchronized void addAmout(double amount) {
         double tmp = balance;
         try {
@@ -32,11 +33,12 @@ public class Account {
         tmp += amount;
         balance = tmp;
     }
+
     /**
-    *4.实现一个subtractAmount()方法，用来根据传入的参数减少balance的值。
+     * 4.实现一个subtractAmount()方法，用来根据传入的参数减少balance的值。
      * 由于应该只有一个线程能改变balance的值，
      * 所以使用synchronized关键字将这个方法转换成临界区。
-    */
+     */
     public synchronized void subtractAmount(double amount) {
         double tmp = balance;
         try {

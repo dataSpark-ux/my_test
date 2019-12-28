@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
  * @Description TODO
  * @createTime 2019/03/25
  */
-public class Exception  {
+public class Exception {
 
     static class ExceptionTest implements Runnable {
         @Override

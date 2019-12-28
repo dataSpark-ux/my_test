@@ -20,6 +20,7 @@ import java.util.Map;
 public class EntityUtils {
     /**
      * 将对象装换为map
+     *
      * @param bean
      * @return
      */
@@ -29,25 +30,29 @@ public class EntityUtils {
             BeanMap beanMap = BeanMap.create(bean);
             for (Object key : beanMap.keySet()) {
                 if (beanMap.get(key) != null) {
-                    map.put(key+"", beanMap.get(key)+"");
+                    map.put(key + "", beanMap.get(key) + "");
                 }
             }
         }
         return map;
     }
+
     /**
      * 将map装换为javabean对象
+     *
      * @param map
      * @param bean
      * @return
      */
-    public static <T> T mapToBean(Map<String, Object> map,T bean) {
+    public static <T> T mapToBean(Map<String, Object> map, T bean) {
         BeanMap beanMap = BeanMap.create(bean);
         beanMap.putAll(map);
         return bean;
     }
+
     /**
      * 将List<T>转换为List<Map<String, Object>>
+     *
      * @param objList
      * @return
      * @throws JsonGenerationException
@@ -59,7 +64,7 @@ public class EntityUtils {
         if (objList != null && objList.size() > 0) {
             Map<String, Object> map = null;
             T bean = null;
-            for (int i = 0,size = objList.size(); i < size; i++) {
+            for (int i = 0, size = objList.size(); i < size; i++) {
                 bean = objList.get(i);
                 map = beanToMap(bean);
                 list.add(map);
@@ -67,8 +72,10 @@ public class EntityUtils {
         }
         return list;
     }
+
     /**
      * 将List<Map<String,Object>>转换为List<T>
+     *
      * @param maps
      * @param clazz
      * @return
@@ -80,7 +87,7 @@ public class EntityUtils {
         if (maps != null && maps.size() > 0) {
             Map<String, Object> map = null;
             T bean = null;
-            for (int i = 0,size = maps.size(); i < size; i++) {
+            for (int i = 0, size = maps.size(); i < size; i++) {
                 map = maps.get(i);
                 bean = clazz.newInstance();
                 mapToBean(map, bean);

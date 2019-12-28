@@ -8,8 +8,7 @@ import java.util.concurrent.Executors;
 /**
  * @suther: wy
  * @Date: 2018/10/14 17
- * @Description:
- * 线程的优先级
+ * @Description: 线程的优先级
  */
 public class SimplePriorities implements Runnable {
 

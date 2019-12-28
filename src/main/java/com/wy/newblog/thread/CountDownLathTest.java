@@ -27,7 +27,7 @@ public class CountDownLathTest {
         }
     }
 
-    static class Staff extends Thread{
+    static class Staff extends Thread {
 
         @Override
         public void run() {
@@ -42,7 +42,7 @@ public class CountDownLathTest {
         //Boss线程启动
         new Boss().start();
 
-        for(int i = 0 ; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             Thread.sleep(5000);
             new Staff().start();
         }

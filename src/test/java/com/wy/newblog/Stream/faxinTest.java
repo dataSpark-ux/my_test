@@ -15,7 +15,7 @@ public class faxinTest {
 
     static List<Fruit> fruits = Arrays.asList(new Fruit());
 
-    static class CovariantReader<T>{
+    static class CovariantReader<T> {
 
         T readCovariant(List<? extends T> list) {
             return list.get(0);
@@ -44,7 +44,7 @@ public class faxinTest {
 //    }
 }
 
-class Fruit{
+class Fruit {
 
 }
 

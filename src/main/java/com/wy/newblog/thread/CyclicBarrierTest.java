@@ -17,6 +17,4 @@ public class CyclicBarrierTest {
     static CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
 
 
-
-
 }

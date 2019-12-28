@@ -12,7 +12,7 @@ public class EngineRobot extends Robot {
 
     @Override
     protected void performService() {
-        System.err.println(this+"installing engine");
+        System.err.println(this + "installing engine");
         assembler.car().addEngine();
     }
 }

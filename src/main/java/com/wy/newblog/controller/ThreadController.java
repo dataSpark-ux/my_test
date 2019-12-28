@@ -40,6 +40,7 @@ public class ThreadController {
             consumerQueueThreadPool.execute(new LiftOff());
         }
     }
+
     @GetMapping("/countDownLatch")
     public Result countDownLatchTest() {
         return threadService.countDownLatch();

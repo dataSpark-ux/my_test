@@ -7,13 +7,13 @@ import java.net.UnknownHostException;
 import java.util.regex.Pattern;
 
 /**
-  * @author WY
-  * @date 2018/9/18
- *
+ * @author WY
+ * @date 2018/9/18
  */
 public class IpUtil {
 
     private static String iPDomain = "http://ip.taobao.com/service/getIpInfo.php?ip=";
+
     public static String getIpAddr(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
@@ -43,7 +43,6 @@ public class IpUtil {
         }
         return ip;
     }
-
 
 
     public static String getServerIP() {

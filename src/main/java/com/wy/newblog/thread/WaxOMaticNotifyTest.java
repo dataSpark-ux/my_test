@@ -47,6 +47,7 @@ public class WaxOMaticNotifyTest {
         public WaxOn(Car c) {
             this.car = c;
         }
+
         @Override
         public void run() {
             try {
@@ -64,7 +65,7 @@ public class WaxOMaticNotifyTest {
         }
     }
 
-  static  class WaxOff implements Runnable {
+    static class WaxOff implements Runnable {
         private Car car;
 
         public WaxOff(Car c) {

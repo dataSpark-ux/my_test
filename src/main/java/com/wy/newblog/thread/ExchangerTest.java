@@ -27,7 +27,7 @@ public class ExchangerTest {
                 String A = "老公接受被打1";
                 try {
                     exgr.exchange(A);
-                    System.err.println("A=="+Thread.currentThread().getName());
+                    System.err.println("A==" + Thread.currentThread().getName());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -38,11 +38,11 @@ public class ExchangerTest {
             public void run() {
                 String B = "老公接受被打";
                 try {
-                    System.err.println("b=="+Thread.currentThread().getName());
+                    System.err.println("b==" + Thread.currentThread().getName());
 
                     String A = exgr.exchange(B);
                     System.out.println("A和B数据是否一致：" + A.equals(B) + ",A录入的是："
-                                    + A + ",B录入是：" + B);
+                            + A + ",B录入是：" + B);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -32,7 +32,7 @@ public class Result<T> {
     }
 
     public Result(ResultCode resultCode, T data) {
-        this(resultCode.getCode(), resultCode.getMessage(),data);
+        this(resultCode.getCode(), resultCode.getMessage(), data);
     }
 
     public String getCode() {

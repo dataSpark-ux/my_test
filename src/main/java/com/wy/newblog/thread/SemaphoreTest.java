@@ -22,8 +22,8 @@ public class SemaphoreTest {
 
     private static ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
     /**
-    *Semaphore(10)表示允许10个线程获取许可证，
-    */
+     * Semaphore(10)表示允许10个线程获取许可证，
+     */
     private static Semaphore semaphore = new Semaphore(10);
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class SemaphoreTest {
                     try {
                         //使用Semaphore的acquire()获取一个许可证
                         semaphore.acquire();
-                        System.out.println(semaphore.availablePermits()+"====save data");
+                        System.out.println(semaphore.availablePermits() + "====save data");
                         Thread.sleep(5000);
                         //使用完之后调用release()归还许可证。还可以用tryAcquire()方法尝试获取许可证。
                         semaphore.release();
